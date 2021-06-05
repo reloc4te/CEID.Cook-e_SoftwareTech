@@ -1,6 +1,7 @@
 # CEID.Cook-e_SoftwareTech
 Software Engineering Project of CEID at University of Patras,Greece
 
+<<<<<<< HEAD
 # Σκοπός
 
 Σκοπός του project είναι να γνωρίσει στην πράξη1
@@ -27,3 +28,6 @@ Software Engineering Project of CEID at University of Patras,Greece
 
 # Project Code
 vccbfd
+=======
+# This is the code for chef
+>>>>>>> 321940e386910338a6ec99950c5a53bcaa5b6187

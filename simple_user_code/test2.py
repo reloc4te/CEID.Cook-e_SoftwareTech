@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 import pymysql
 import tkinter as tk
-from tkinter import ttk
 
 class Login:
 
@@ -208,7 +207,6 @@ class UserProfile():
         self.root.geometry("370x550")
         self.root.resizable(False,False)
         self.Profile()
-        self.tabs()
         
       #   self.frame = tk.Frame(self.root)
       #   self.quitButton = tk.Button(self.frame, text = 'Quit', width = 25, command = self.close_windows)
@@ -218,23 +216,12 @@ class UserProfile():
    def Profile(self):
       Frame_profile = Frame(self.root, bg="whitesmoke")
       Frame_profile.place(x=0, y=0, width=370, height=550)
+
       # Add image file
       self.image = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/Cook-e.png")
       # Show image using label
       image = Label( self.root, image = self.image)
       image.place(x = 10,y = 30, width=50, height=50)
-   
-   def tabs(self):
-      Frame_tabs = Frame(self.root, bg="blue")
-      Frame_tabs.place(x=0, y=80)
-      #s = ttk.Style(Frame_tabs)
-      notebook = ttk.Notebook(Frame_tabs)
-      frame1 = ttk.Frame(Frame_tabs, width=370, height=550)
-      frame2 = ttk.Frame(Frame_tabs)
-      notebook.add(frame1, text="Just for you")
-      notebook.add(frame2, text="Find a recipe")
-      #s.configure("TNotebook", tabposition='n')
-      notebook.pack()
       
    def close_windows(self):
       self.root.destroy()

@@ -1,29 +1,14 @@
 from tkinter import * #Το χρησιμοποιούμε για να εισάγουμε την βιβλιοθήκη για το GUI
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter import messagebox
+import pymysql 
 
 root = Tk() #To κύριο παράθυρό μας
 root.title("Chef's Interface") #Ο τίτλος του παραθύρου
 root.geometry("500x500") #H διάσταστη του παραθύρου
 #Make the app resizeable
-root.resizable(True, True) #Width #Height
-
-# w = 250
-# h = 500
-
-# my_canvas = Canvas(root, width=w, height=h, bg="white")
-# my_canvas.pack(pady=20)
-
-# img = PhotoImage(file="chef/7.png")
-# my_image = my_canvas.create_image(0, 0, anchor=NW, image=img)
-
-# def move(e):
-#     global img
-#     img = PhotoImage(file="chef/7.png")
-#     my_image = my_canvas.create_image(e.x, e.y, image=img)
-
-
-# my_canvas.bind('<B1-Motion>', move)
+root.resizable(False, False) #Width #Height
 
 
 my_notebook = ttk.Notebook(root)
@@ -46,9 +31,18 @@ class FramesOfTabs:
 
 class AddContent(FramesOfTabs):
     def addTitle(self):
-        self.recipesTitle = Label(self.my_frame2, text="Recipes",borderwidth=10,width=100,bg="#E59A41",fg="white")
+        self.recipesTitle = Label(self.my_frame2, text="Recipes", font=(15),borderwidth=10,width=100,bg="#E59A41",fg="white")
         self.recipesTitle.pack()
-    
+
+    def displayRecipes(self):
+        try:
+            con = pymysql.connect(host="localhost", user="root", password = "123451", database = "project_db")
+            cur = con.cursor()
+            cur.execute("SELECT * FROM recipes WHERE chef_name = botrini")
+        except Exception as es:
+            messagebox.showerror("Error",f"Error due to:{str(es)}",parent=self.root)
+
+
 mainInstance = AddContent(my_notebook).addTitle()
 
 

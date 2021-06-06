@@ -10,9 +10,17 @@ root.geometry("500x500") #H διάσταστη του παραθύρου
 #Make the app resizeable
 root.resizable(False, False) #Width #Height
 
-
 my_notebook = ttk.Notebook(root)
 my_notebook.pack(pady=50)
+
+def addNewRecipe():
+    top = Toplevel()
+    top.title("Add New Recipe")
+    top.geometry("200x200")
+
+    addNewFrame = LabelFrame(top, text="Choose your way",padx=5,pady=5,bg="#E59A41").pack(padx=10,pady=10)
+    addFromFilesButton = Button(top, text="Add from file").pack()
+
 
 class FramesOfTabs:
     def __init__(self,master):
@@ -28,27 +36,19 @@ class FramesOfTabs:
         master.add(self.my_frame2, text="My Recipes")
         master.add(self.my_frame3, text="Settings")
 
-
-class AddContent(FramesOfTabs):
-    def addTitle(self):
+    def addContent(self):
         self.recipesTitle = Label(self.my_frame2, text="Recipes", font=(15),borderwidth=10,width=100,bg="#E59A41",fg="white")
         self.recipesTitle.pack()
 
-        try:
-            con = pymysql.connect(host="localhost", user="root", password = "123451", database = "project_db")
-            cur = con.cursor()
-            r_set= cur.execute("SELECT * FROM recipes WHERE chef_name = botrini")
-            i=2
-            for recipes in r_set:
-                for j in range(len(recipes)):
-                    e = Label(self.my_frame2,width=10,fg="black")
-                    e.grid(row=i,column=j)  
-                i+=1
-        except Exception as es:
-            messagebox.showerror("Error",f"Error due to:{str(es)}",parent=self.root)
+        self.firstButton = Button(self.my_frame2, text="Tost", width=100,bg="white").pack()
+        self.secondButton = Button(self.my_frame2, text="Spaggeti", width=100,bg="white").pack()
+        self.thirdButton = Button(self.my_frame2, text="Bolognese", width=100,bg="white").pack()
+        self.fourthButton = Button(self.my_frame2, text="Pizza", width=100,bg="white").pack()
+        self.addRecipesButton = Button(self.my_frame2, text="Add New",width=10,bg="#E59A41",command=addNewRecipe).pack(pady=30)
 
 
-mainInstance = AddContent(my_notebook).addTitle()
+
+mainInstance = FramesOfTabs(my_notebook).addContent()
 
 
 

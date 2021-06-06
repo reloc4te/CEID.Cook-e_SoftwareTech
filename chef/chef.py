@@ -34,11 +34,16 @@ class AddContent(FramesOfTabs):
         self.recipesTitle = Label(self.my_frame2, text="Recipes", font=(15),borderwidth=10,width=100,bg="#E59A41",fg="white")
         self.recipesTitle.pack()
 
-    def displayRecipes(self):
         try:
             con = pymysql.connect(host="localhost", user="root", password = "123451", database = "project_db")
             cur = con.cursor()
-            cur.execute("SELECT * FROM recipes WHERE chef_name = botrini")
+            r_set= cur.execute("SELECT * FROM recipes WHERE chef_name = botrini")
+            i=2
+            for recipes in r_set:
+                for j in range(len(recipes)):
+                    e = Label(self.my_frame2,width=10,fg="black")
+                    e.grid(row=i,column=j)  
+                i+=1
         except Exception as es:
             messagebox.showerror("Error",f"Error due to:{str(es)}",parent=self.root)
 

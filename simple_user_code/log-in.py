@@ -204,37 +204,79 @@ class UserProfile():
 
    def __init__(self, root):
         self.root = root
-        self.root.title("Login/Sign up System")
+        self.root.title("Your Profile")
         self.root.geometry("370x550")
         self.root.resizable(False,False)
         self.tabs()
-   
-   
+        #tabControl = ttk.Notebook(root)
+
    def tabs(self):
       self.image = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/Cook-e.png")
       # Show image using label
       image = Label( self.root, image = self.image)
       image.place(x = 10,y = 10, width=50, height=50)
       
-      self.root.title("Tab Widget")
+      self.root.title("Your Profile")
       tabControl = ttk.Notebook(self.root)
   
-      tab1 = ttk.Frame(tabControl)
-      tab2 = ttk.Frame(tabControl)
-      tab3 = ttk.Frame(tabControl)
-      tab4 = ttk.Frame(tabControl)
+      self.tab1 = Frame(tabControl,bg="white")
+      self.tab2 = Frame(tabControl,bg="white")
+      self.tab3 = Frame(tabControl,bg="white")
+      self.tab4 = Frame(tabControl,bg="white")
   
-      tabControl.add(tab1, text ='Just for you')
-      tabControl.add(tab2, text ='Find a recipe')
-      tabControl.add(tab3, text ='Nutritionist')
-      tabControl.add(tab4, text ='Mycart')
+      tabControl.add(self.tab1, text ='Just for you')
+      tabControl.add(self.tab2, text ='Find a recipe')
+      tabControl.add(self.tab3, text ='Nutritionist')
+      tabControl.add(self.tab4, text ='Mycart')
       tabControl.place(x=0,y=60,width=500,height=700)
       #s.configure("TNotebook", tabposition='n')
-      #tabContro%l.pack(expand = 1, fill ="both")
+      #tabControl.pack(expand = 1, fill ="both")
   
-      ttk.Label(tab1, text ="Welcome to GeeksForGeeks").grid(column = 0, row = 0,padx = 30,pady = 30)  
-      ttk.Label(tab2,text ="Lets dive into the world of computers").grid(column = 0,row = 0, padx = 30,pady = 30)
-      
+      ttk.Label(self.tab1, text ="Week's Recipe!",background="orange",width=90).grid(column = 0, row = 0)
+      #ttk.Label(tab2,text ="Lets dive into the world of computers",background="white").grid(column = 0,row = 0, padx = 30,pady = 30)
+
+      self.tab1.img2 = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/food.png")
+      # Show image using label
+      img2 = Label( self.tab1, image = self.tab1.img2)
+      img2.place(x =0,y =20, width=400, height=80)
+
+      # con=pymysql.connect(host="localhost",user="root",password="texnologia!@logismikou1998",database="pythonlogin")
+
+      # my_conn = con.cursor()
+      # ####### end of connection ####
+      # my_conn.execute("SELECT * FROM recipes")
+      # i=0 
+      # for recipe in my_conn: 
+      #    for j in range(len(recipe)):
+      #       e = Entry(self.root, fg='blue') 
+      #       e.grid(row=i, column=j) 
+      #       e.insert(END, recipe[j])
+      #    i=i+1
+      # try:
+      #  connection = pymysql.connect(host='localhost',database='pythonlogin',user='root',password='texnologia!@logismikou1998')
+
+      #  sql_select_Query = "select * from recipes"
+      #  cursor = connection.cursor()
+      #  cursor.execute(sql_select_Query)
+      #  # get all records
+      #  records = cursor.fetchall()
+      #  print("Total number of rows in table: ", cursor.rowcount)
+
+      #  print("\nPrinting each row")
+      #  for row in records:
+      #   print("your_nistructions = ", row[0], )
+      # #   print("Name = ", row[1])
+      # #   print("Price  = ", row[2])
+      # #   print("Purchase date  = ", row[3], "\n")
+
+      # except Exception as e:
+      #  print("Error reading data from MySQL table", e)
+      # # finally:
+      # #  if connection.is_connected():
+      # #   connection.close()
+      # #   cursor.close()
+      # #   print("MySQL connection is closed")
+   
    def close_windows(self):
       self.root.destroy()
 

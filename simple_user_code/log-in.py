@@ -21,7 +21,7 @@ class Login:
         # Add image file
         self.bg = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/cookie.png")
         # Show image using label
-        bg = Label( root, image = self.bg)
+        bg = Label( self.root, image = self.bg)
         bg.place(x = 0,y = 0, width=800, height=500)
 
         frame_input=Frame(self.root, bg='white')
@@ -81,7 +81,7 @@ class Login:
             else:
 
                #self.appscreen()
-               newWindow = Toplevel(root)
+               newWindow = Toplevel(self.root)
 
                # sets the title of the
                # Toplevel widget
@@ -197,6 +197,7 @@ class Login:
     def loginclear(self):
       self.email_txt.delete(0,END)
       self.password.delete(0,END)
+     
 
 class UserProfile():
 
@@ -205,15 +206,39 @@ class UserProfile():
         self.root.title("Login/Sign up System")
         self.root.geometry("370x550")
         self.root.resizable(False,False)
+        self.Profile()
         
       #   self.frame = tk.Frame(self.root)
       #   self.quitButton = tk.Button(self.frame, text = 'Quit', width = 25, command = self.close_windows)
       #   self.quitButton.pack()
       #   self.frame.pack()
+
+   def Profile(self):
+      Frame_profile = Frame(self.root, bg="whitesmoke")
+      Frame_profile.place(x=0, y=0, width=370, height=550)
+
+      # Add image file
+      self.image = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/Cook-e.png")
+      # Show image using label
+      image = Label( self.root, image = self.image)
+      image.place(x = 10,y = 30, width=50, height=50)
+
+
    def close_windows(self):
       self.root.destroy()
+
+
+
+def main(): 
+ root = tk.Tk()
+ app = Login(root)
+ root.mainloop()
+
+if __name__ == '__main__':
+   main()
    
-  
-root = Tk()
-ob = Login(root)
-root.mainloop()
+
+     
+#root = Tk()
+#ob = Login(root)
+#root.mainloop()

@@ -1,6 +1,3 @@
-#Initial code 
-
-
 from tkinter import * #Το χρησιμοποιούμε για να εισάγουμε την βιβλιοθήκη για το GUI
 from tkinter import ttk
 from tkinter import filedialog
@@ -32,21 +29,27 @@ root.resizable(True, True) #Width #Height
 my_notebook = ttk.Notebook(root)
 my_notebook.pack(pady=50)
 
-my_frame1 = Frame(my_notebook, width=500, height=500, bg="white")
-my_frame2 = Frame(my_notebook, width=500, height=500, bg="white")
-my_frame3 = Frame(my_notebook, width=500, height=500, bg="white")
+class FramesOfTabs:
+    def __init__(self,master):
+        self.my_frame1 = Frame(master, width=500, height=500, bg="white")
+        self.my_frame2 = Frame(master, width=500, height=500, bg="white")
+        self.my_frame3 = Frame(master, width=500, height=500, bg="white")
 
-my_frame1.pack(fill="both",expand=1)
-my_frame2.pack(fill="both",expand=1)
-my_frame3.pack(fill="both",expand=1)
+        self.my_frame1.pack(fill="both",expand=1)
+        self.my_frame2.pack(fill="both",expand=1)
+        self.my_frame3.pack(fill="both",expand=1)
 
-my_notebook.add(my_frame1, text="Home")
-my_notebook.add(my_frame2, text="My Recipes")
-my_notebook.add(my_frame3, text="Settings")
+        master.add(self.my_frame1, text="Home")
+        master.add(self.my_frame2, text="My Recipes")
+        master.add(self.my_frame3, text="Settings")
 
-recipesTitle = Label(my_frame2, text="Recipes",borderwidth=10,width=100,bg="#E59A41",fg="white")
-recipesTitle.pack()
 
+class AddContent(FramesOfTabs):
+    def addTitle(self):
+        self.recipesTitle = Label(self.my_frame2, text="Recipes",borderwidth=10,width=100,bg="#E59A41",fg="white")
+        self.recipesTitle.pack()
+    
+mainInstance = AddContent(my_notebook).addTitle()
 
 
 

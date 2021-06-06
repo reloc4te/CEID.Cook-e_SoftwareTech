@@ -4,20 +4,26 @@ from tkinter import messagebox
 import pymysql
 
 class Login:
+
+
     def __init__(self, root):
 
         self.root = root
         self.root.title("Login/Sign up System")
-        self.root.geometry("900x700+100+50")
+        self.root.geometry("800x700")
         self.root.resizable(False,False)
         self.loginform()
 
+
     def loginform(self): #Login Frame
         Frame_login = Frame(self.root, bg="white")
-        Frame_login.place(x=0, y=0, width=1000, height=700)
+        Frame_login.place(x=0, y=0, width=900, height=700)
 
-        #self.img=PhotoImage(file="cookie.png")
-        #img=Label(Frame_login, image=self.img).place(x=0,y=0,width=1366,height=700)
+        # Add image file
+        self.bg = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/cookie.png")
+        # Show image using label
+        bg = Label( root, image = self.bg)
+        bg.place(x = 0,y = 0, width=800, height=500)
 
         frame_input=Frame(self.root, bg='white')
         frame_input.place(x=200,y=130,height=450,width=350)
@@ -46,6 +52,8 @@ class Login:
 
         btn3=Button(frame_input,command=self.Register,text="Not Registered?register",cursor="hand2",font=("calibri",10),bg='white',fg="black",bd=0)
         btn3.place(x=110,y=390)
+
+
 
     def login(self):
 
@@ -81,52 +89,60 @@ class Login:
 
             messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
     
+
+
     def Register(self):
       Frame_login1=Frame(self.root,bg="white")
-      Frame_login1.place(x=0,y=0,height=700,width=1000)
+      Frame_login1.place(x=0,y=0,height=700,width=700)
 
-      #self.img=ImageTk.PhotoImage(file="background-2.jpg")
-
-      #img=Label(Frame_login1,image=self.img).place(x=0,y=0,width=1366,height=700)
+      self.img=PhotoImage(file="C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/cookie.png")
+      img=Label(Frame_login1,image=self.img).place(x=0,y=0,width=800,height=500)
 
       frame_input2=Frame(self.root,bg='white')
-      frame_input2.place(x=200,y=130,height=450,width=630)
+      frame_input2.place(x=150,y=130,height=450,width=520)
 
       label1=Label(frame_input2,text="Good to have you on board!",font=('Calibri',32,'bold'), fg="orange",bg='white')
-      label1.place(x=20,y=20)
+      label1.place(x=5,y=20)
+
 
       label2=Label(frame_input2,text="Username",font=("Comics Sans MS",20), fg='brown',bg='white')
-      label2.place(x=30,y=95)
+      label2.place(x=10,y=95)
 
       self.entry=Entry(frame_input2,font=("Calibri",15),bg='white')
-      self.entry.place(x=30,y=145,width=270,height=35)
+      self.entry.place(x=10,y=145,width=200,height=35)
+
 
       label3=Label(frame_input2,text="Password",font=("Comics Sans MS",20), fg='brown',bg='white')
-      label3.place(x=30,y=195)
+      label3.place(x=10,y=195)
 
       self.entry2=Entry(frame_input2,font=("Calibri",15),bg='white')
       self.entry2.config(show="*");
-      self.entry2.place(x=30,y=245,width=270,height=35)
+      self.entry2.place(x=10,y=235,width=200,height=35)
+
 
       label4=Label(frame_input2,text="Email",font=("Comics Sans MS",20), fg='brown',bg='white')
-      label4.place(x=330,y=95)
+      label4.place(x=250,y=95)
 
       self.entry3=Entry(frame_input2,font=("Calibri",15), bg='white')
-      self.entry3.place(x=330,y=145,width=270,height=35)
+      self.entry3.place(x=250,y=145,width=200,height=35)
+
 
       label5=Label(frame_input2,text="Confirm Password",font=("Comics Sans MS",20),fg='brown',bg='white')
-      label5.place(x=330,y=195)
+      label5.place(x=250,y=195)
 
       self.entry4=Entry(frame_input2,font=("Calibri",15),bg='white')
       self.entry4.config(show="*");
-      self.entry4.place(x=330,y=245,width=270,height=35)
+      self.entry4.place(x=250,y=235,width=200,height=35)
+
 
       btn2=Button(frame_input2,command=self.register,text="Register",cursor="hand2",font=("Calibri",15),fg="white",bg="orange",bd=0,width=15,height=1)
-      btn2.place(x=90,y=340)
+      btn2.place(x=160,y=340)
 
       btn3=Button(frame_input2,command=self.loginform, text="Already Registered?Login",cursor="hand2",font=("calibri",10),bg='white',fg="black",bd=0)
-      btn3.place(x=110,y=390)
+      btn3.place(x=170,y=390)
     
+
+
     def register(self):
 
       if self.entry.get()==""or self.entry2.get()==""or self.entry3.get()==""or self.entry4.get()=="":
@@ -158,6 +174,8 @@ class Login:
          except Exception as es:
             messagebox.showerror("Error",f"Error due to:{str(es)}",parent=self.root)
 
+
+
     def appscreen(self):
       Frame_login=Frame(self.root,bg="white")
       Frame_login.place(x=0,y=0,height=700,width=1000)
@@ -165,15 +183,20 @@ class Login:
       btn2=Button(Frame_login,text="Logout",command=self.loginform,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
       btn2.place(x=500,y=10)
 
+
+
     def regclear(self):
       self.entry.delete(0,END)
       self.entry2.delete(0,END)
       self.entry3.delete(0,END)
       self.entry4.delete(0,END)
 
+
+
     def loginclear(self):
       self.email_txt.delete(0,END)
       self.password.delete(0,END)
+
 
 root = Tk()
 ob = Login(root)

@@ -28,8 +28,6 @@ class FramesOfTabs:
         master.add(self.my_frame2, text="My Recipes")
         master.add(self.my_frame3, text="Settings")
 
-
-class AddContent(FramesOfTabs):
     def addTitle(self):
         self.recipesTitle = Label(self.my_frame2, text="Recipes", font=(15),borderwidth=10,width=100,bg="#E59A41",fg="white")
         self.recipesTitle.pack()
@@ -48,7 +46,7 @@ class AddContent(FramesOfTabs):
             messagebox.showerror("Error",f"Error due to:{str(es)}",parent=self.root)
 
 
-mainInstance = AddContent(my_notebook).addTitle()
+mainInstance = FramesOfTabs(my_notebook).addTitle()
 
 
 

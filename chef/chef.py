@@ -1,8 +1,6 @@
 from tkinter import * #Το χρησιμοποιούμε για να εισάγουμε την βιβλιοθήκη για το GUI
 from tkinter import ttk
 from tkinter import filedialog
-from tkinter import messagebox
-import pymysql 
 
 root = Tk() #To κύριο παράθυρό μας
 root.title("Chef's Interface") #Ο τίτλος του παραθύρου
@@ -16,11 +14,13 @@ my_notebook.pack(pady=50)
 def addNewRecipe():
     top = Toplevel()
     top.title("Add New Recipe")
-    top.geometry("200x200")
-
-    addNewFrame = LabelFrame(top, text="Choose your way",padx=5,pady=5,bg="#E59A41").pack(padx=10,pady=10)
-    addFromFilesButton = Button(top, text="Add from file").pack()
-
+    top.geometry("200x120")
+    addNewFrame = Label(top, text="Choose your way",borderwidth=5,width=100,bg="#E59A41",fg="white")
+    addNewFrame.pack()
+    addFromFilesButton = Button(top, text="Add from file",bg="#FAC978",width=20,fg="white")
+    addFromFilesButton.pack(pady=10)
+    addFromScratch = Button(top, text="Add from scratch",width=20,bg="#FAC978",fg="white")
+    addFromScratch.pack()
 
 class FramesOfTabs:
     def __init__(self,master):

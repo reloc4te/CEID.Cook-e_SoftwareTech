@@ -8,9 +8,13 @@ root.geometry("500x500") #H διάσταστη του παραθύρου
 #Make the app resizeable
 root.resizable(False, False) #Width #Height
 
+root.img = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech/chef/Cook-e.png")
+# Show image using label
+img = Label(root, image = root.img)
+img.place(x = 0,y = 10, width=50, height=50)
 
 my_notebook = ttk.Notebook(root)
-my_notebook.pack(pady=50)
+my_notebook.pack(pady=100)
 
 def addNewRecipe():
     top = Toplevel()
@@ -28,17 +32,14 @@ def openFile():
 
 class FramesOfTabs:
     def __init__(self,master):
-        self.my_frame1 = Frame(master,width=500,height=500, bg="white")
-        self.my_frame2 = Frame(master,width=500,height=500, bg="white")
-        self.my_frame3 = Frame(master,width=500,height=500, bg="white")
-
-        self.my_frame1.pack(padx=100,pady=100)
-        self.my_frame2.pack(padx=100,pady=100)
-        self.my_frame3.pack(padx=100,pady=100)
+        self.my_frame1 = Frame(master, bg="white")
+        self.my_frame2 = Frame(master, bg="white")
+        self.my_frame3 = Frame(master, bg="white")
 
         master.add(self.my_frame1, text="Home")
         master.add(self.my_frame2, text="My Recipes")
         master.add(self.my_frame3, text="Settings")
+        master.place(x=0,y=60,width=500,height=500)
 
     def addContent(self):
         self.recipesTitle = Label(self.my_frame2, text="Recipes", font=(15),borderwidth=10,width=100,bg="#E59A41",fg="white")

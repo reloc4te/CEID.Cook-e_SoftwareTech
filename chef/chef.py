@@ -8,6 +8,7 @@ root.geometry("500x500") #H διάσταστη του παραθύρου
 #Make the app resizeable
 root.resizable(False, False) #Width #Height
 
+
 my_notebook = ttk.Notebook(root)
 my_notebook.pack(pady=50)
 
@@ -17,20 +18,23 @@ def addNewRecipe():
     top.geometry("200x120")
     addNewFrame = Label(top, text="Choose your way",borderwidth=5,width=100,bg="#E59A41",fg="white")
     addNewFrame.pack()
-    addFromFilesButton = Button(top, text="Add from file",bg="#FAC978",width=20,fg="white")
+    addFromFilesButton = Button(top, text="Add from file",bg="#FAC978",width=20,fg="white",command=openFile)
     addFromFilesButton.pack(pady=10)
     addFromScratch = Button(top, text="Add from scratch",width=20,bg="#FAC978",fg="white")
     addFromScratch.pack()
 
+def openFile():
+    filename = filedialog.askopenfilename(initialdir="C:/",title="Select File")
+
 class FramesOfTabs:
     def __init__(self,master):
-        self.my_frame1 = Frame(master, width=500, height=500, bg="white")
-        self.my_frame2 = Frame(master, width=500, height=500, bg="white")
-        self.my_frame3 = Frame(master, width=500, height=500, bg="white")
+        self.my_frame1 = Frame(master,width=500,height=500, bg="white")
+        self.my_frame2 = Frame(master,width=500,height=500, bg="white")
+        self.my_frame3 = Frame(master,width=500,height=500, bg="white")
 
-        self.my_frame1.pack(fill="both",expand=1)
-        self.my_frame2.pack(fill="both",expand=1)
-        self.my_frame3.pack(fill="both",expand=1)
+        self.my_frame1.pack(padx=100,pady=100)
+        self.my_frame2.pack(padx=100,pady=100)
+        self.my_frame3.pack(padx=100,pady=100)
 
         master.add(self.my_frame1, text="Home")
         master.add(self.my_frame2, text="My Recipes")

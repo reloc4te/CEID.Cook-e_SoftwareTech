@@ -65,6 +65,6 @@ class FramesOfTabs:
 
 mainInstance = FramesOfTabs(my_notebook).addContent()
 
-
+#test
 
 root.mainloop() 

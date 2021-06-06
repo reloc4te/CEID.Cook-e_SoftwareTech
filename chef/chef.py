@@ -8,7 +8,7 @@ root.geometry("500x500") #H διάσταστη του παραθύρου
 #Make the app resizeable
 root.resizable(False, False) #Width #Height
 
-root.img = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech/chef/Cook-e.png")
+root.img = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech-1/chef/Cook-e.png")
 # Show image using label
 img = Label(root, image = root.img)
 img.place(x = 0,y = 10, width=50, height=50)
@@ -41,6 +41,16 @@ class FramesOfTabs:
         master.add(self.my_frame3, text="Settings")
         master.place(x=0,y=60,width=500,height=500)
 
+        self.my_frame2.img2 = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech-1/chef/7.png")
+        # Show image using label
+        img2 = Label(self.my_frame2, image = self.my_frame2.img2,bg="white")
+        img2.place(x = 1,y = 180, width=180, height=170)
+
+        self.my_frame2.img3 = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech-1/chef/Cook-eold.png")
+        # Show image using label
+        img3 = Label(self.my_frame2, image = self.my_frame2.img3,bg="white")
+        img3.place(x = 315,y = 180, width=180, height=170)
+
     def addContent(self):
         self.recipesTitle = Label(self.my_frame2, text="Recipes", font=(15),borderwidth=10,width=100,bg="#E59A41",fg="white")
         self.recipesTitle.pack()
@@ -54,8 +64,6 @@ class FramesOfTabs:
 
 
 mainInstance = FramesOfTabs(my_notebook).addContent()
-
-
 
 
 

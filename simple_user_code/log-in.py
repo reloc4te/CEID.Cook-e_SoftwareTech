@@ -1,10 +1,8 @@
 from tkinter import *
-#from PIL import ImageTk
 from tkinter import messagebox
 import pymysql
 
 class Login:
-
 
     def __init__(self, root):
 
@@ -178,11 +176,13 @@ class Login:
 
     def appscreen(self):
       Frame_login=Frame(self.root,bg="white")
-      Frame_login.place(x=0,y=0,height=700,width=1000)
+      Frame_login.place(x=0,y=0,height=700,width=800)
       
-      btn2=Button(Frame_login,text="Logout",command=self.loginform,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+      btn2=Button(Frame_login,text="Logout",command=self.loginform,cursor="hand2",font=("Comics Sans MS",8),fg="white",bg="gold",bd=0,width=10,height=1)
       btn2.place(x=500,y=10)
 
+    def Close(self):
+        self.root.destroy()
 
 
     def regclear(self):
@@ -190,7 +190,6 @@ class Login:
       self.entry2.delete(0,END)
       self.entry3.delete(0,END)
       self.entry4.delete(0,END)
-
 
 
     def loginclear(self):

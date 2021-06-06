@@ -205,13 +205,31 @@ class UserProfile():
         self.root.title("Login/Sign up System")
         self.root.geometry("370x550")
         self.root.resizable(False,False)
+        self.Profile()
         
       #   self.frame = tk.Frame(self.root)
       #   self.quitButton = tk.Button(self.frame, text = 'Quit', width = 25, command = self.close_windows)
       #   self.quitButton.pack()
       #   self.frame.pack()
+
+   def Profile(self):
+      Frame_profile = Frame(self.root, bg="blue")
+      Frame_profile.place(x=0, y=0, width=370, height=550)
+
+      # Add image file
+      self.image = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/cookie.png")
+      # Show image using label
+      image = Label( root, image = self.bg)
+      image.place(x = 0,y = 0, width=800, height=500)
+
+
    def close_windows(self):
       self.root.destroy()
+
+   
+
+     
+  
    
   
 root = Tk()

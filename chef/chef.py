@@ -8,11 +8,7 @@ root.geometry("500x500") #H διάσταστη του παραθύρου
 #Make the app resizeable
 root.resizable(False, False) #Width #Height
 
-<<<<<<< HEAD
 root.img = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech-1/chef/Cook-e.png")
-=======
-root.img = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech/chef/Cook-e.png")
->>>>>>> 2583f4d441c219c874b96778709cd07935d6899c
 # Show image using label
 img = Label(root, image = root.img)
 img.place(x = 0,y = 10, width=50, height=50)

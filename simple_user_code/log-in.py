@@ -1,10 +1,9 @@
 from tkinter import *
-#from PIL import ImageTk
 from tkinter import messagebox
 import pymysql
+import tkinter as tk
 
 class Login:
-
 
     def __init__(self, root):
 
@@ -81,8 +80,23 @@ class Login:
 
             else:
 
-               self.appscreen()
+               #self.appscreen()
+               newWindow = Toplevel(root)
 
+               # sets the title of the
+               # Toplevel widget
+               newWindow.title("New Window")
+  
+               # sets the geometry of toplevel
+               newWindow.geometry("200x200")
+  
+               # A Label widget to show in toplevel
+               Label(newWindow, text ="This is a new window").pack()
+
+               self.root.destroy() # close the current window
+               self.root = tk.Tk() # create another Tk instance
+               self.app = UserProfile(self.root) # create Demo2 window
+               self.root.mainloop()
                con.close()
 
          except Exception as es:
@@ -142,7 +156,6 @@ class Login:
       btn3.place(x=170,y=390)
     
 
-
     def register(self):
 
       if self.entry.get()==""or self.entry2.get()==""or self.entry3.get()==""or self.entry4.get()=="":
@@ -175,29 +188,32 @@ class Login:
             messagebox.showerror("Error",f"Error due to:{str(es)}",parent=self.root)
 
 
-
-    def appscreen(self):
-      Frame_login=Frame(self.root,bg="white")
-      Frame_login.place(x=0,y=0,height=700,width=1000)
-      
-      btn2=Button(Frame_login,text="Logout",command=self.loginform,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
-      btn2.place(x=500,y=10)
-
-
-
     def regclear(self):
       self.entry.delete(0,END)
       self.entry2.delete(0,END)
       self.entry3.delete(0,END)
       self.entry4.delete(0,END)
 
-
-
     def loginclear(self):
       self.email_txt.delete(0,END)
       self.password.delete(0,END)
 
+class UserProfile():
 
+   def __init__(self, root):
+        self.root = root
+        self.root.title("Login/Sign up System")
+        self.root.geometry("370x550")
+        self.root.resizable(False,False)
+        
+      #   self.frame = tk.Frame(self.root)
+      #   self.quitButton = tk.Button(self.frame, text = 'Quit', width = 25, command = self.close_windows)
+      #   self.quitButton.pack()
+      #   self.frame.pack()
+   def close_windows(self):
+      self.root.destroy()
+   
+  
 root = Tk()
 ob = Login(root)
 root.mainloop()

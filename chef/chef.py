@@ -52,4 +52,6 @@ mainInstance = AddContent(my_notebook).addTitle()
 
 
 
+
+
 root.mainloop() 

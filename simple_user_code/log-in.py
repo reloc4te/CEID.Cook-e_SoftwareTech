@@ -207,34 +207,33 @@ class UserProfile():
         self.root.title("Login/Sign up System")
         self.root.geometry("370x550")
         self.root.resizable(False,False)
-        self.Profile()
         self.tabs()
-        
-      #   self.frame = tk.Frame(self.root)
-      #   self.quitButton = tk.Button(self.frame, text = 'Quit', width = 25, command = self.close_windows)
-      #   self.quitButton.pack()
-      #   self.frame.pack()
-
-   def Profile(self):
-      Frame_profile = Frame(self.root, bg="whitesmoke")
-      Frame_profile.place(x=0, y=0, width=370, height=550)
-      # Add image file
+   
+   
+   def tabs(self):
       self.image = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/Cook-e.png")
       # Show image using label
       image = Label( self.root, image = self.image)
-      image.place(x = 10,y = 30, width=50, height=50)
-   
-   def tabs(self):
-      Frame_tabs = Frame(self.root, bg="blue")
-      Frame_tabs.place(x=0, y=80)
-      #s = ttk.Style(Frame_tabs)
-      notebook = ttk.Notebook(Frame_tabs)
-      frame1 = ttk.Frame(Frame_tabs, width=370, height=550)
-      frame2 = ttk.Frame(Frame_tabs)
-      notebook.add(frame1, text="Just for you")
-      notebook.add(frame2, text="Find a recipe")
+      image.place(x = 10,y = 10, width=50, height=50)
+      
+      self.root.title("Tab Widget")
+      tabControl = ttk.Notebook(self.root)
+  
+      tab1 = ttk.Frame(tabControl)
+      tab2 = ttk.Frame(tabControl)
+      tab3 = ttk.Frame(tabControl)
+      tab4 = ttk.Frame(tabControl)
+  
+      tabControl.add(tab1, text ='Just for you')
+      tabControl.add(tab2, text ='Find a recipe')
+      tabControl.add(tab3, text ='Nutritionist')
+      tabControl.add(tab4, text ='Mycart')
+      tabControl.place(x=0,y=60,width=500,height=700)
       #s.configure("TNotebook", tabposition='n')
-      notebook.pack()
+      #tabContro%l.pack(expand = 1, fill ="both")
+  
+      ttk.Label(tab1, text ="Welcome to GeeksForGeeks").grid(column = 0, row = 0,padx = 30,pady = 30)  
+      ttk.Label(tab2,text ="Lets dive into the world of computers").grid(column = 0,row = 0, padx = 30,pady = 30)
       
    def close_windows(self):
       self.root.destroy()

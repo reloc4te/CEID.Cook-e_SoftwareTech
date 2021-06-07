@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter.font import BOLD
 import pymysql
 import tkinter as tk
 from tkinter import ttk
@@ -208,7 +209,6 @@ class UserProfile():
         self.root.geometry("370x550")
         self.root.resizable(False,False)
         self.tabs()
-        #tabControl = ttk.Notebook(root)
 
    def tabs(self):
       self.image = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/Cook-e.png")
@@ -218,7 +218,7 @@ class UserProfile():
       
       self.root.title("Your Profile")
       tabControl = ttk.Notebook(self.root)
-  
+       
       self.tab1 = Frame(tabControl,bg="white")
       self.tab2 = Frame(tabControl,bg="white")
       self.tab3 = Frame(tabControl,bg="white")
@@ -231,51 +231,70 @@ class UserProfile():
       tabControl.place(x=0,y=60,width=500,height=700)
       #s.configure("TNotebook", tabposition='n')
       #tabControl.pack(expand = 1, fill ="both")
-  
-      ttk.Label(self.tab1, text ="Week's Recipe!",background="orange",width=90).grid(column = 0, row = 0)
-      #ttk.Label(tab2,text ="Lets dive into the world of computers",background="white").grid(column = 0,row = 0, padx = 30,pady = 30)
+       
 
+    #TAB "JUST FOR YOU" 
+      ttk.Label(self.tab1, text ="Week's Recipe!",background="orange",width=90).grid(column = 0, row = 0)
+      
       self.tab1.img2 = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/food.png")
       # Show image using label
       img2 = Label( self.tab1, image = self.tab1.img2)
       img2.place(x =0,y =20, width=400, height=80)
 
-      # con=pymysql.connect(host="localhost",user="root",password="texnologia!@logismikou1998",database="pythonlogin")
+      con=pymysql.connect(host="localhost",user="root",password="texnologia!@logismikou1998",database="pythonlogin")
+      my_cursor=con.cursor()
+      sql = "Select recipe_name from recipes order by rand() limit 1"
+      result = my_cursor.execute(sql)
+      result=my_cursor.fetchall()
+      sql2 = "Select chef_name from recipes where recipe_name=%s "
+      recipe_name=(result, )
+      result2 = my_cursor.execute(sql2, recipe_name)
+      result2=my_cursor.fetchall()
+      sql3 = "Select your_instructions from recipes where recipe_name=%s "
+      result3 = my_cursor.execute(sql3,recipe_name)
+      result3=my_cursor.fetchall()
 
-      # my_conn = con.cursor()
-      # ####### end of connection ####
-      # my_conn.execute("SELECT * FROM recipes")
-      # i=0 
-      # for recipe in my_conn: 
-      #    for j in range(len(recipe)):
-      #       e = Entry(self.root, fg='blue') 
-      #       e.grid(row=i, column=j) 
-      #       e.insert(END, recipe[j])
-      #    i=i+1
-      # try:
-      #  connection = pymysql.connect(host='localhost',database='pythonlogin',user='root',password='texnologia!@logismikou1998')
 
-      #  sql_select_Query = "select * from recipes"
-      #  cursor = connection.cursor()
-      #  cursor.execute(sql_select_Query)
-      #  # get all records
-      #  records = cursor.fetchall()
-      #  print("Total number of rows in table: ", cursor.rowcount)
+      #Μορφοποίηση αποτελεσμάτων
 
-      #  print("\nPrinting each row")
-      #  for row in records:
-      #   print("your_nistructions = ", row[0], )
-      # #   print("Name = ", row[1])
-      # #   print("Price  = ", row[2])
-      # #   print("Purchase date  = ", row[3], "\n")
+       #Ονομα συνατγής retrieved from database
+      recipeName = Label(self.tab1, text="Your week's recipe is:",font=("Calibri",20,'bold'), fg="orange", bg="white")
+      recipeName.place(x=0, y=100)
+      searched_result = Label(self.tab1, text=result,background="white",font=('Calibri',15),fg="brown")
+      searched_result.place(x=255, y=105)
 
-      # except Exception as e:
-      #  print("Error reading data from MySQL table", e)
-      # # finally:
-      # #  if connection.is_connected():
-      # #   connection.close()
-      # #   cursor.close()
-      # #   print("MySQL connection is closed")
+       #Όνομα chef της retrieved συνταγής 
+      chefName = Label(self.tab1, text="Inspired by:",font=("Calibri",15,'bold'), fg="orange", bg="white")
+      chefName.place(x=0, y=130)
+      searched_result2 = Label(self.tab1, text=result2,background="white",font=('Calibri',12),fg="brown")
+      searched_result2.place(x=110, y=133)
+
+       #Οδηγίες εκτέλεσης της retrieved συνταγής 
+      instructions = Label(self.tab1, text="Instructions for you",font=("Calibri",20,'bold','underline'), fg="orange", bg="white")
+      instructions.place(x=60, y=155)
+      searched_result3 = Label(self.tab1, text=result3,background="white",font=('Calibri',12),fg="brown")
+      searched_result3.place(x=0, y=200)
+
+    #TAB "FIND A RECIPE"
+      ttk.Label(self.tab2, text ="Let's find you something to cook..",background="orange",width=90,font=(20),padding=5).grid(column = 0, row = 0)
+      # welcomeinTab = Label(self.tab2, text="Let's find you something to cook",font=("Calibri",15), fg="black", bg="orange")
+      # welcomeinTab.place(x=0, y=10)
+
+      #Drop down box for search: cookware 
+      labelCW = Label(self.tab2,text="Cookware",background="DarkGoldenrod1",font=("Calibri",15),width=38)
+      labelCW.place(x=0,y=35)
+      dropCW = ttk.Combobox(self.tab2, values=["Cookware...","pot","pan","stock-pot","grill-pan","casserole","baking-sheet"],width=58)
+      dropCW.current(0)
+      dropCW.place(x=0, y=68)
+
+      #Drop down box for search: cookware 
+      labelCW = Label(self.tab2,text="Cookware",background="DarkGoldenrod1",font=("Calibri",15),width=38)
+      labelCW.place(x=0,y=35)
+      dropCW = ttk.Combobox(self.tab2, values=["Cookware...","pot","pan","stock-pot","grill-pan","casserole","baking-sheet"],width=58)
+      dropCW.current(0)
+      dropCW.place(x=0, y=68)
+
+
    
    def close_windows(self):
       self.root.destroy()

@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-from tkinter.font import BOLD
+#from tkinter.font import BOLD
 import pymysql
 import tkinter as tk
 from tkinter import ttk
@@ -82,18 +82,18 @@ class Login:
 
             else:
 
-               #self.appscreen()
-               newWindow = Toplevel(self.root)
+               # #self.appscreen()
+               # newWindow = Toplevel(self.root)
 
-               # sets the title of the
-               # Toplevel widget
-               newWindow.title("New Window")
+               # # sets the title of the
+               # # Toplevel widget
+               # newWindow.title("New Window")
   
-               # sets the geometry of toplevel
-               newWindow.geometry("200x200")
+               # # sets the geometry of toplevel
+               # newWindow.geometry("200x200")
   
-               # A Label widget to show in toplevel
-               Label(newWindow, text ="This is a new window").pack()
+               # # A Label widget to show in toplevel
+               # Label(newWindow, text ="This is a new window").pack()
 
                self.root.destroy() # close the current window
                self.root = tk.Tk() # create another Tk instance
@@ -276,6 +276,10 @@ class UserProfile():
       searched_result3.place(x=0, y=200)
 
     #TAB "FIND A RECIPE"
+
+      def search_recipe():
+         sqlrecipe = "Select "
+
       ttk.Label(self.tab2, text ="Let's find you something to cook..",background="orange",width=90,font=(20),padding=5).grid(column = 0, row = 0)
       # welcomeinTab = Label(self.tab2, text="Let's find you something to cook",font=("Calibri",15), fg="black", bg="orange")
       # welcomeinTab.place(x=0, y=10)
@@ -287,14 +291,40 @@ class UserProfile():
       dropCW.current(0)
       dropCW.place(x=0, y=68)
 
-      #Drop down box for search: cookware 
-      labelCW = Label(self.tab2,text="Cookware",background="DarkGoldenrod1",font=("Calibri",15),width=38)
-      labelCW.place(x=0,y=35)
-      dropCW = ttk.Combobox(self.tab2, values=["Cookware...","pot","pan","stock-pot","grill-pan","casserole","baking-sheet"],width=58)
+      #Drop down box for search: type of meal 
+      labelCW = Label(self.tab2,text="Type of meal",background="DarkGoldenrod1",font=("Calibri",15),width=38)
+      labelCW.place(x=0,y=97)
+      dropCW = ttk.Combobox(self.tab2, values=["Type of meal...","breakfast","branch","lunch","snack","dinner"],width=58)
       dropCW.current(0)
-      dropCW.place(x=0, y=68)
+      dropCW.place(x=0, y=130)
 
+      #Drop down box for search: ingredients
+      labelCW = Label(self.tab2,text="Ingridients",background="DarkGoldenrod1",font=("Calibri",15),width=38)
+      labelCW.place(x=0,y=160)
+      dropCW = ttk.Combobox(self.tab2, values=["Vegetables..","cabbage","tomato","cucumber","potato","carrot"],width=58)
+      dropCW.current(0)
+      dropCW.place(x=0, y=194)
 
+      dropCW = ttk.Combobox(self.tab2, values=["Meat-Chicken-Seafood..","chicken","lamb","beef","pork","shrimps","tuna"],width=58)
+      dropCW.current(0)
+      dropCW.place(x=0, y=220)
+
+      dropCW = ttk.Combobox(self.tab2, values=["Dairy..","milk","cheese","yoghurt","butter","soft-cheese"],width=58)
+      dropCW.current(0)
+      dropCW.place(x=0, y=245)
+
+      dropCW = ttk.Combobox(self.tab2, values=["Fruit..","apple","banana","strawberry","avocado","peach"],width=58)
+      dropCW.current(0)
+      dropCW.place(x=0, y=270)
+
+      dropCW = ttk.Combobox(self.tab2, values=["Others..","gluten-free","dairy-free"],width=58)
+      dropCW.current(0)
+      dropCW.place(x=0, y=295)
+
+      searchRecipe = Button(self.tab2,text="Search..",command=search_recipe,cursor="hand2",font=("Calibri",15),fg="white",bg="orange",bd=0,width=10)
+      searchRecipe.place(x=130, y=330)
+      
+      
    
    def close_windows(self):
       self.root.destroy()

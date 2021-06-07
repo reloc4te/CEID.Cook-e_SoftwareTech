@@ -11,7 +11,7 @@ root.geometry("500x500") #H διάσταστη του παραθύρου
 root.resizable(False, False) #Width #Height
 
 
-def openPersonalInformation(self):
+def openPersonalInformation():
       
     PersonalInformation = Toplevel(root)   # Toplevel object which will be treated as a new window
     PersonalInformation.title("Personal Information")   # sets the title of the Toplevel widget
@@ -20,13 +20,13 @@ def openPersonalInformation(self):
     Label(PersonalInformation, text ="This is a new window").pack()  # A Label widget to show in toplevel
     label.pack(pady = 10)
 
-    self.Username_btn = Button(root, text="Username", padx=50, pady=10, borderwidth = 0, command = openUsername)
+    Username_btn = Button(root, text="Username", padx=50, pady=10, borderwidth = 0, command = openUsername)
     # Password_btn = Button(root, text="Password", padx=50, pady=10, borderwidth = 0)
     # Personal_btn = Button(root, text="Personal", padx=50, pady=10, borderwidth = 0)
     # Medical_btn = Button(root, text="Medical", padx=50, pady=10, borderwidth = 0)
     # Food_btn = Button(root, text="Favorite Cuisines", padx=50, pady=10, borderwidth = 0)
 
-    self.Username_btn.pack(anchor="w")
+    Username_btn.pack(anchor="w")
     # Password_btn.pack(anchor="w")
     # Personal_btn.pack(anchor="w")
     # Medical_btn.pack(anchor="w")

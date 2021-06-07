@@ -22,7 +22,10 @@ class ChatApplication:
     
     def __init__(self):
         self.window=Tk()
+<<<<<<< HEAD
         
+=======
+>>>>>>> fe5442472998ba157f2110201a0ec4d4fb106083
         self._setup_main_window()
 
     def run(self):
@@ -48,6 +51,7 @@ class ChatApplication:
         
         
       
+<<<<<<< HEAD
        # self.window.geometry("800x700")
         
         #image = Image.open("photo.jpg")
@@ -55,6 +59,15 @@ class ChatApplication:
         #self.window.photo=PhotoImage(file="C:/Users/kleas/OneDrive/Έγγραφα/Ceid/8o ΕΞΑΜΗΝΟ/ΤΛ/pytorch-chatbot-master/photo.png")
        # label_image=Label(self.window,image=self.window.photo)
        # label_image.place(x=0,y=0,relheight=50, relwidth=50)
+=======
+        self.window.geometry("800x700")
+        
+        image = Image.open("photo.jpg")
+        #c=Canvas(self.window,bg=WHITE,height=200,width=200)
+        photo=ImageTk.PhotoImage(image)
+        label_image=Label(self.window,image=photo)
+        label_image.place(x=0,y=0,relheight=1, relwidth=1)
+>>>>>>> fe5442472998ba157f2110201a0ec4d4fb106083
         #c.pack()
       
 

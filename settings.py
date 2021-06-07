@@ -8,7 +8,6 @@ from tkinter import messagebox
 root = Tk() #To κύριο παράθυρό μας
 root.title("Settings") #Ο τίτλος του παραθύρου
 root.geometry("500x500") #H διάσταστη του παραθύρου
-#Make the app resizeable
 root.resizable(False, False) #Width #Height
 
 
@@ -92,7 +91,39 @@ def openPersonal():
     Personal.geometry("500x500")
 
     Label(Personal, text ="Personal Settings", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
-    label.pack(pady = 10)
+    label=Label.pack(pady = 10)
+    # Change the label text
+    def show():
+        label.config( text = clicked.get() )
+    
+    # Dropdown menu options
+    options = [
+        "0-10",
+        "10-15",
+        "16-18",
+        "19-22",
+        "23-27",
+        "28-40",
+        "41-50",
+        "51+"
+    ]
+    # datatype of menu text
+    clicked = StringVar()
+    
+    # initial menu text
+    clicked.set( "age" )
+    
+    # Create Dropdown menu
+    drop = OptionMenu( Personal , clicked , *options )
+    drop.grid(row = 1, column = 0, columnspan=2)
+    
+    # Create button, it will change label text
+    button = Button( Personal , text = "Select" , command = show )
+    button.grid(row = 1, column = 2)
+    
+    # Create Label
+    label = Label( Personal , text = " " )
+    label.grid(row = 1, column = 3, columnspan=2)
 
 
 

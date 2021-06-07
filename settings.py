@@ -84,7 +84,7 @@ def openPassword():
     Label(Password, text ="Password Settings", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
     label.pack(pady = 10)
 
-
+    
 def openPersonal():
     Personal = Toplevel(root)   # Toplevel object which will be treated as a new window
     Personal.title("Personal Settings")   # sets the title of the Toplevel widget
@@ -93,37 +93,36 @@ def openPersonal():
     Label(Personal, text ="Personal Settings", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
     label=Label.pack(pady = 10)
     # Change the label text
-    def show():
-        label.config( text = clicked.get() )
+def show(self):
+    #label.config( text = clicked.get() )
+    Label(show, text = clicked.get()).pack()
     
     # Dropdown menu options
-    options = [
-        "0-10",
-        "10-15",
-        "16-18",
-        "19-22",
-        "23-27",
-        "28-40",
-        "41-50",
-        "51+"
-    ]
+options = [
+    "0-10",
+    "10-15",
+    "16-18",
+    "19-22",
+    "23-27",
+    "28-40",
+    "41-50",
+    "51+"
+ ]
     # datatype of menu text
-    clicked = StringVar()
-    
+clicked = StringVar()
     # initial menu text
-    clicked.set( "age" )
-    
+clicked.set( "age" )
     # Create Dropdown menu
-    drop = OptionMenu( Personal , clicked , *options )
-    drop.grid(row = 1, column = 0, columnspan=2)
+drop = OptionMenu( root , clicked , *options )
+drop.grid(row = 0, column = 0, columnspan=2)
     
     # Create button, it will change label text
-    button = Button( Personal , text = "Select" , command = show )
-    button.grid(row = 1, column = 2)
+button = Button( root , text = "Select" , command = show )
+button.grid(row = 0, column = 2)
     
     # Create Label
-    label = Label( Personal , text = " " )
-    label.grid(row = 1, column = 3, columnspan=2)
+label = Label( root , text = " " )
+label.grid(row = 0, column = 3, columnspan=2)
 
 
 

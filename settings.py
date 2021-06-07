@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
 import tkinter as tk
+from tkinter import messagebox
 
 
 root = Tk() #To κύριο παράθυρό μας
@@ -21,10 +22,10 @@ def openPersonalInformation():
     label.pack(pady = 10)
 
     Username_btn = Button(PersonalInformation, text="Username", padx=50, pady=10, borderwidth = 0, command = openUsername)
-    Password_btn = Button(PersonalInformation, text="Password", padx=50, pady=10, borderwidth = 0)
-    Personal_btn = Button(PersonalInformation, text="Personal", padx=50, pady=10, borderwidth = 0)
-    Medical_btn = Button(PersonalInformation, text="Medical", padx=50, pady=10, borderwidth = 0)
-    Food_btn = Button(PersonalInformation, text="Favorite Cuisines", padx=50, pady=10, borderwidth = 0)
+    Password_btn = Button(PersonalInformation, text="Password", padx=50, pady=10, borderwidth = 0, command = openPassword)
+    Personal_btn = Button(PersonalInformation, text="Personal", padx=50, pady=10, borderwidth = 0, command = openPersonal)
+    Medical_btn = Button(PersonalInformation, text="Medical", padx=50, pady=10, borderwidth = 0, command= openMedical)
+    Food_btn = Button(PersonalInformation, text="Favorite Cuisines", padx=50, pady=10, borderwidth = 0, command= openFavoriteCuisines)
 
     Username_btn.pack(anchor="w")
     Password_btn.pack(anchor="w")
@@ -41,27 +42,80 @@ def openUsername():
     Label(Username, text ="Username Settings", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
     label.pack(pady = 10)
 
-    e = Entry(Username, width=100, bg="orange", fg="white")
+    hello = "Hello " #να προσθεσω να τραβαει απο τη βαση το current username του user, ωστε να του δειχνει τι εχει εκεινη τη στιγμη
+    Label(Username, text =hello).pack()
+    label.pack()
+
+    e = Entry(Username, width=30, bg="orange", fg="white")
     e.pack()
     e.insert(0, "Enter a new Username")
+
+    myButton = Button(Username, text="Submit", padx=10, pady=2, bg="black", fg="white", borderwidth = 0)
+    myButton.pack()
+
+    # εδω πρεπει να συνδεσω βαση ωστε οταν κανει submit να πηγαινει στη βαση και να κοιταει / αποθηκευει
+
+
+
+    if e == None:
+
+               messagebox.showerror("Error","Username already Exists",parent=Username.root)
+               Username.regclear()
+               Username.entry.focus()
+
+        #     else:
+
+        #        cur.execute("insert into accounts values(%s,%s,%s,%s)",(Username.entry.get(),Username.entry3.get(),Username.entry2.get(),Username.entry4.get()))
+        #        con.commit()
+        #        con.close()
+
+        #        messagebox.showinfo("Success","Register Succesfull",parent=Username.root)
+        #        Username.regclear()
+
+        #  except Exception as es:
+        #     messagebox.showerror("Error",f"Error due to:{str(es)}",parent=Username.root)
 #e.delete(0, END)
 
-# def openPassword():
+def openPassword():
+
+    Password = Toplevel(root)   # Toplevel object which will be treated as a new window
+    Password.title("Password Settings")   # sets the title of the Toplevel widget
+    Password.geometry("500x500")
+
+    Label(Password, text ="Password Settings", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
+    label.pack(pady = 10)
+
+
+def openPersonal():
+    Personal = Toplevel(root)   # Toplevel object which will be treated as a new window
+    Personal.title("Personal Settings")   # sets the title of the Toplevel widget
+    Personal.geometry("500x500")
+
+    Label(Personal, text ="Personal Settings", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
+    label.pack(pady = 10)
 
 
 
-# def openPersonal():
+
+
+def openMedical():
+    Medical = Toplevel(root)   # Toplevel object which will be treated as a new window
+    Medical.title("Medical Settings")   # sets the title of the Toplevel widget
+    Medical.geometry("500x500")
+
+    Label(Medical, text ="Medical Settings", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
+    label.pack(pady = 10)
 
 
 
 
+def openFavoriteCuisines():
+    FavoriteCuisines = Toplevel(root)   # Toplevel object which will be treated as a new window
+    FavoriteCuisines.title("Favorite Cuisines Settings")   # sets the title of the Toplevel widget
+    FavoriteCuisines.geometry("500x500")
 
-# def openMedical():
-
-
-
-
-# def openFavoriteCuisines():
+    Label(FavoriteCuisines, text ="Favorite Cuisines Settings", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
+    label.pack(pady = 10)
 
 
 

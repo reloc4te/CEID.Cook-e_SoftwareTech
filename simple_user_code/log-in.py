@@ -278,11 +278,37 @@ class UserProfile():
     #TAB "FIND A RECIPE"
 
       def search_recipe():
-         sqlrecipe = "Select "
+         selectedCW = dropCW.get()
+         selectedmeal = dropmeal.get()
+         selectedmeat = dropmeat.get()
+         selectedveg = dropveg.get()
+         selecteddairy = dropdairy.get()
+         selectedfruit = dropfruit.get()
+         selectedothers = dropothers.get()
+
+         if selectedCW == "Cookware..." and selectedmeat == "Meat-Chicken-Seafood.." and selectedveg == "Vegetables.." and selecteddairy == "Dairy.." and selectedfruit == "Fruit.." and selectedothers == "Others..":
+            noCW=Label(self.tab2, text="Cookware and Ingridients are not optional",font=("Caibri",10,"bold"),fg="red",bg="white")
+            noCW.place(x=50,y=380)
+         elif selectedCW == "Cookware...":
+            noCW=Label(self.tab2, text="Cookware must be filled",font=("Caibri",10,"bold"),fg="red",bg="white")
+            noCW.place(x=100,y=380)
+         elif selectedmeat == "Meat-Chicken-Seafood.." or selectedveg == "Vegetables.." or selecteddairy == "Dairy.." or selectedfruit == "Fruit.." or selectedothers == "Others..":
+            noCW=Label(self.tab2, text="Ingridients are not optional",font=("Caibri",10,"bold"),fg="red",bg="white")
+            noCW.place(x=90,y=380)
+         
+         # if selectedmeat == "Meat-Chicken-Seafood.." or selectedveg == "Vegetables.." or selecteddairy == "Dairy.." or selectedfruit == "Fruit.." or selectedothers == "Others.." :
+         #    nomeat=Label(self.tab2, text="Ingridients must be filled if one doesn't apply to your need select None",font=("Caibri",10,"bold"),fg="red",bg="white")
+         #    nomeat.place(x=0,y=380)
+         
+         # if selectedCW == "Cookware..." and selectedmeat == "Meat-Chicken-Seafood.." or selectedveg == "Vegetables.." or selecteddairy == "Dairy.." or selectedfruit == "Fruit.." or selectedothers == "Others..":
+         #    noCW=Label(self.tab2, text="Cookware and Infridients are not optional",font=("Caibri",10,"bold"),fg="red",bg="white")
+         #    noCW.place(x=110,y=380)
+
+
+         
 
       ttk.Label(self.tab2, text ="Let's find you something to cook..",background="orange",width=90,font=(20),padding=5).grid(column = 0, row = 0)
-      # welcomeinTab = Label(self.tab2, text="Let's find you something to cook",font=("Calibri",15), fg="black", bg="orange")
-      # welcomeinTab.place(x=0, y=10)
+
 
       #Drop down box for search: cookware 
       labelCW = Label(self.tab2,text="Cookware",background="DarkGoldenrod1",font=("Calibri",15),width=38)
@@ -292,34 +318,34 @@ class UserProfile():
       dropCW.place(x=0, y=68)
 
       #Drop down box for search: type of meal 
-      labelCW = Label(self.tab2,text="Type of meal",background="DarkGoldenrod1",font=("Calibri",15),width=38)
-      labelCW.place(x=0,y=97)
-      dropCW = ttk.Combobox(self.tab2, values=["Type of meal...","breakfast","branch","lunch","snack","dinner"],width=58)
-      dropCW.current(0)
-      dropCW.place(x=0, y=130)
+      labelmeal = Label(self.tab2,text="Type of meal",background="DarkGoldenrod1",font=("Calibri",15),width=38)
+      labelmeal.place(x=0,y=97)
+      dropmeal = ttk.Combobox(self.tab2, values=["Type of meal...","breakfast","branch","lunch","snack","dinner"],width=58)
+      dropmeal.current(0)
+      dropmeal.place(x=0, y=130)
 
       #Drop down box for search: ingredients
-      labelCW = Label(self.tab2,text="Ingridients",background="DarkGoldenrod1",font=("Calibri",15),width=38)
-      labelCW.place(x=0,y=160)
-      dropCW = ttk.Combobox(self.tab2, values=["Vegetables..","cabbage","tomato","cucumber","potato","carrot"],width=58)
-      dropCW.current(0)
-      dropCW.place(x=0, y=194)
+      labelingr = Label(self.tab2,text="Ingridients",background="DarkGoldenrod1",font=("Calibri",15),width=38)
+      labelingr.place(x=0,y=160)
+      dropveg = ttk.Combobox(self.tab2, values=["Vegetables..","cabbage","tomato","cucumber","potato","carrot"],width=58)
+      dropveg.current(0)
+      dropveg.place(x=0, y=194)
 
-      dropCW = ttk.Combobox(self.tab2, values=["Meat-Chicken-Seafood..","chicken","lamb","beef","pork","shrimps","tuna"],width=58)
-      dropCW.current(0)
-      dropCW.place(x=0, y=220)
+      dropmeat = ttk.Combobox(self.tab2, values=["Meat-Chicken-Seafood..","chicken","lamb","beef","pork","shrimps","tuna"],width=58)
+      dropmeat.current(0)
+      dropmeat.place(x=0, y=220)
 
-      dropCW = ttk.Combobox(self.tab2, values=["Dairy..","milk","cheese","yoghurt","butter","soft-cheese"],width=58)
-      dropCW.current(0)
-      dropCW.place(x=0, y=245)
+      dropdairy = ttk.Combobox(self.tab2, values=["Dairy..","milk","cheese","yoghurt","butter","soft-cheese"],width=58)
+      dropdairy.current(0)
+      dropdairy.place(x=0, y=245)
 
-      dropCW = ttk.Combobox(self.tab2, values=["Fruit..","apple","banana","strawberry","avocado","peach"],width=58)
-      dropCW.current(0)
-      dropCW.place(x=0, y=270)
+      dropfruit = ttk.Combobox(self.tab2, values=["Fruit..","apple","banana","strawberry","avocado","peach"],width=58)
+      dropfruit.current(0)
+      dropfruit.place(x=0, y=270)
 
-      dropCW = ttk.Combobox(self.tab2, values=["Others..","gluten-free","dairy-free"],width=58)
-      dropCW.current(0)
-      dropCW.place(x=0, y=295)
+      dropothers = ttk.Combobox(self.tab2, values=["Others..","gluten-free","dairy-free"],width=58)
+      dropothers.current(0)
+      dropothers.place(x=0, y=295)
 
       searchRecipe = Button(self.tab2,text="Search..",command=search_recipe,cursor="hand2",font=("Calibri",15),fg="white",bg="orange",bd=0,width=10)
       searchRecipe.place(x=130, y=330)

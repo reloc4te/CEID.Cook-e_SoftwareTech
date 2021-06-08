@@ -52,6 +52,8 @@ class Nutritionist():
         tabControl.add(self.tab3, text ='Nutritionist')
         tabControl.add(self.tab4, text ='Mycart')
         tabControl.place(x=0,y=60,width=500,height=700)
+	tabControl.select(self.tab3)
+	
      
 
 

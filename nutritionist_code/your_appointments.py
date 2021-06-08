@@ -4,7 +4,6 @@ from tkinter import * #Το χρησιμοποιούμε για να εισάγ�
 from tkinter import ttk
 import tkinter as tk
 from tkcalendar import * 
-from tkinter import filedialog
 from tkinter import messagebox
 import pymysql
 

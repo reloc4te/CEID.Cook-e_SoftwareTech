@@ -1,3 +1,4 @@
+from os import name
 from tkinter import * #Το χρησιμοποιούμε για να εισάγουμε την βιβλιοθήκη για το GUI
 from tkinter import ttk
 import tkinter as tk
@@ -32,6 +33,7 @@ class Chef:
         my_notebook.add(self.my_frame2, text="My Recipes")
         my_notebook.add(self.my_frame3, text="Settings")
         my_notebook.place(x=0,y=60,width=500,height=500)
+        my_notebook.select(self.my_frame2)
 
         self.my_frame2.img2 = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech-1/chef/7.png")
         # Show image using label
@@ -128,6 +130,7 @@ class CreateRecipe:
         #Show image using label
         img = Label(self.root, image = self.root.img)
         img.place(x = 0,y = 10, width=50, height=50)
+
         my_notebook = ttk.Notebook(self.root)
         my_notebook.pack(pady=100)
 
@@ -146,6 +149,7 @@ class CreateRecipe:
         frame2 = Frame(self.my_frame2,bg="#FFEE8E")
         frame2.place(x=0,y=0,height=500,width=500)
         # Δημιουργώ το Entry για να πληκτρολογεί ο chef το όνομα της συνταγής
+        global inputName
         inputName = Entry(self.my_frame2,font=("Calibri",12),bg="#E59A41",width=62,borderwidth=5,fg="white")
         inputName.insert(0,"Choose a name for your recipe:")
         inputName.place(x=0,y=0)
@@ -155,6 +159,7 @@ class CreateRecipe:
         inputCookware.place(x=0,y=40)
 
         # Δημιουργώ το Drop-down για το cookware
+        global dropCW
         dropCW = ttk.Combobox(self.my_frame2,values=["Search...","pot","pan","stock-pot","grill-pan","casserole","baking-sheet"],width=59,font=("Calibri",12),foreground="black",background="white")
         dropCW.current(0)
         dropCW.place(x=0,y=70)
@@ -164,43 +169,58 @@ class CreateRecipe:
         inputMeal.place(x=0,y=100)
 
         # Δημιουργώ το Drop-down για το type of meal
+        global dropMeal
         dropMeal = ttk.Combobox(self.my_frame2,values=["Search...","breakfast","branch","lunch","snack","dinner"],width=59,font=("Calibri",12),foreground="black",background="white")
         dropMeal.current(0)
         dropMeal.place(x=0,y=130)
 
         # Δημιουργώ το Label για το ingridients
-        inputMeal = Label(self.my_frame2,text="Choose ingridients", font=("Calibri",12),bg="#E59A41",fg="white",width=62,borderwidth=3)
-        inputMeal.place(x=0,y=160)
+        labelMeal = Label(self.my_frame2,text="Choose ingridients", font=("Calibri",12),bg="#E59A41",fg="white",width=62,borderwidth=3)
+        labelMeal.place(x=0,y=160)
 
         # Δημιουργώ το Drop-down για το vegetables
-        dropMeal = ttk.Combobox(self.my_frame2,values=["Vegetables..","cabbage","tomato","cucumber","potato","carrot"],width=59,font=("Calibri",12),foreground="black",background="white")
-        dropMeal.current(0)
-        dropMeal.place(x=0,y=190)
+        global dropVeg
+        dropVeg = ttk.Combobox(self.my_frame2,values=["Vegetables..","cabbage","tomato","cucumber","potato","carrot"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropVeg.current(0)
+        dropVeg.place(x=0,y=190)
 
         # Δημιουργώ το Drop-down για το Meat-chicken-seafood
-        dropMeal = ttk.Combobox(self.my_frame2,values=["Meat-Chicken-Seafood..","chicken","lamb","beef","pork","shrimps","tuna"],width=59,font=("Calibri",12),foreground="black",background="white")
-        dropMeal.current(0)
-        dropMeal.place(x=0,y=220)
+        global dropMeat
+        dropMeat = ttk.Combobox(self.my_frame2,values=["Meat-Chicken-Seafood..","chicken","lamb","beef","pork","shrimps","tuna"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropMeat.current(0)
+        dropMeat.place(x=0,y=220)
         
         # Δημιουργώ το Drop-down για το Dairy
-        dropMeal = ttk.Combobox(self.my_frame2,values=["Dairy..","milk","cheese","yoghurt","butter","soft-cheese"],width=59,font=("Calibri",12),foreground="black",background="white")
-        dropMeal.current(0)
-        dropMeal.place(x=0,y=250)
+        global dropDairy
+        dropDairy = ttk.Combobox(self.my_frame2,values=["Dairy..","milk","cheese","yoghurt","butter","soft-cheese"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropDairy.current(0)
+        dropDairy.place(x=0,y=250)
 
         # Δημιουργώ το Drop-down για το Fruits
-        dropMeal = ttk.Combobox(self.my_frame2,values=["Fruit..","apple","banana","strawberry","avocado","peach"],width=59,font=("Calibri",12),foreground="black",background="white")
-        dropMeal.current(0)
-        dropMeal.place(x=0,y=280)
+        global dropFruits
+        dropFruits = ttk.Combobox(self.my_frame2,values=["Fruit..","apple","banana","strawberry","avocado","peach"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropFruits.current(0)
+        dropFruits.place(x=0,y=280)
 
-        # Δημιουργώ το Drop-down για το Others
-        dropMeal = ttk.Combobox(self.my_frame2,values=["Others..","gluten-free","dairy-free"],width=59,font=("Calibri",12),foreground="black",background="white")
-        dropMeal.current(0)
-        dropMeal.place(x=0,y=310)
+        # # Δημιουργώ το Drop-down για το Others
+        # global dropOthers
+        # dropOthers = ttk.Combobox(self.my_frame2,values=["Others..","NOgluten","NOdairy"],width=59,font=("Calibri",12),foreground="black",background="white")
+        # dropOthers.current(0)
+        # dropOthers.place(x=0,y=310)
 
         # Δημιουργώ κουμπί που θα λειτουργεί σαν swipe left
 
-        swipeLeft = Button(self.my_frame2,text="Swipe Left",bg="#E59A41",fg="white",borderwidth=2,command=self.swipe)
-        swipeLeft.place(x=210,y=360)
+        swipeLeft = Button(self.my_frame2,text="Swipe Left",bg="#E59A41",width=10,fg="white",borderwidth=2,command=self.swipe)
+        swipeLeft.place(x=210,y=320)
+
+        goBack = Button(self.my_frame2,text="Go Back",bg="#E59A41",width=10,fg="white",borderwidth=2,command=self.goBackwards)
+        goBack.place(x=210,y=350)
+
+    def goBackwards(self):
+        self.root.destroy()
+        self.root = tk.Tk()
+        self.mainInstance = Chef(self.root)
+        self.root.mainloop()
 
     def swipe(self):
         frame1 = Frame(self.my_frame2,bg="#FFEE8E")
@@ -228,12 +248,13 @@ class CreateRecipe:
         inputInst.place(x=0,y=200)
 
         # Δημιουργώ Entry για τα σχόλια
+        global comments
         comments = Entry(self.my_frame2,font=("Calibri",12),bg="white",fg="black",width=61,borderwidth=3)
         comments.insert(0,"Write your comments is this section")
         comments.place(x=0,y=230,height=100)
 
         # Δημιουργώ κουμπί για το upload 
-        systemImageButton = Button(self.my_frame2,text="Upload",bg="#E59A41",fg="white",borderwidth=2)
+        systemImageButton = Button(self.my_frame2,text="Upload",bg="#E59A41",fg="white",borderwidth=2, command=self.uploadRecipe)
         systemImageButton.place(x=220,y=340)
 
         # Δημιουργώ κουμπί για το swipe right 
@@ -243,9 +264,37 @@ class CreateRecipe:
     def systemImage(self):
         filename2 = filedialog.askopenfilename(initialdir="C:/",title="Select Image")
 
-    
+    def uploadRecipe(self):
+        upRecName = inputName.get()
+        upCW = dropCW.get()
+        upMeal = dropMeal.get()
+        upVeg = dropVeg.get()
+        upMeat = dropMeat.get()
+        upDairy = dropDairy.get()
+        upFruits = dropFruits.get()
+        # upOthers = dropFruits.get()
+        upCommments = comments.get()
 
+            
+        conRec=pymysql.connect(host="localhost",user="root",password="texnologia!@logismikou1998",database="pythonlogin")
+        my_cursor2=conRec.cursor()
+        sqlRec = "Insert into recipes (recipe_name, cookware, type_of_meal, vegetables, meat, dairy, fruit, your_instructions) values ( %s, %s, %s, %s, %s, %s, %s, %s) "
 
+        nameRec=(upRecName, )
+        nameCW=(upCW, )
+        nameMeal=(upMeal, )
+        nameVeg=(upVeg, )
+        nameMeat=(upMeat, )
+        nameDairy=(upDairy, )
+        nameFruits=(upFruits, )
+        # nameOthers=(upOthers, )
+        nameComments=(upCommments, )
+
+        
+        my_cursor2.execute(sqlRec,(nameRec, nameCW, nameMeal, nameVeg, nameMeat, nameDairy, nameFruits , nameComments))
+        
+        conRec.commit()
+        messagebox.showinfo(title="UPLOADED ", message="Uploaded successfully!")
 
 
 def main(): 
@@ -255,4 +304,3 @@ def main():
 
 if __name__ == '__main__':
    main()
-

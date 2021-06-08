@@ -143,6 +143,8 @@ class CreateRecipe:
         my_notebook.select(self.my_frame2) # Χρησιμοποιώ αυτή τη γραμμή κώδικα ώστε το νέο παράθυρο να ανοίξει στο frame2 δηλαδή το frame του My Recipes
     
     def createDrop(self):
+        frame2 = Frame(self.my_frame2,bg="#FFEE8E")
+        frame2.place(x=0,y=0,height=500,width=500)
         # Δημιουργώ το Entry για να πληκτρολογεί ο chef το όνομα της συνταγής
         inputName = Entry(self.my_frame2,font=("Calibri",12),bg="#E59A41",width=62,borderwidth=5,fg="white")
         inputName.insert(0,"Choose a name for your recipe:")
@@ -201,26 +203,8 @@ class CreateRecipe:
         swipeLeft.place(x=210,y=360)
 
     def swipe(self):
-        self.new = Toplevel()
-        self.new.title("Add New Recipe")
-        self.new.geometry("500x500")
-        self.new.img = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech-1/chef/Cook-e.png")
-        #Show image using label
-        img = Label(self.new, image = self.new.img)
-        img.place(x = 0,y = 10, width=50, height=50)
-        my_notebook = ttk.Notebook(self.new)
-        my_notebook.pack(pady=100)
-
-        self.my_frame1 = Frame(my_notebook, bg="white")
-        self.my_frame2 = Frame(my_notebook, bg="#FFEE8E")
-        self.my_frame3 = Frame(my_notebook, bg="white")
-        
-        my_notebook.add(self.my_frame1, text="Home")
-        my_notebook.add(self.my_frame2, text="My Recipes")
-        my_notebook.add(self.my_frame3, text="Settings")
-        my_notebook.place(x=0,y=60,width=500,height=500)
-
-        my_notebook.select(self.my_frame2) # Χρησιμοποιώ αυτή τη γραμμή κώδικα ώστε το νέο παράθυρο να ανοίξει στο frame2 δηλαδή το frame του My Recipes
+        frame1 = Frame(self.my_frame2,bg="#FFEE8E")
+        frame1.place(x=0,y=0,height=500,width=500)
     
         # Δημιουργώ το Label για το image
         inputImage = Label(self.my_frame2,text="Select an image for your recipe", font=("Calibri",12),bg="#E59A41",fg="white",width=62,borderwidth=3)
@@ -246,11 +230,15 @@ class CreateRecipe:
         # Δημιουργώ Entry για τα σχόλια
         comments = Entry(self.my_frame2,font=("Calibri",12),bg="white",fg="black",width=61,borderwidth=3)
         comments.insert(0,"Write your comments is this section")
-        comments.place(x=0,y=230,height=120)
+        comments.place(x=0,y=230,height=100)
 
         # Δημιουργώ κουμπί για το upload 
-        systemImageButton = Button(self.my_frame2,text="Upload",bg="white",background="#E59A41",fg="white",borderwidth=2)
-        systemImageButton.place(x=220,y=370)
+        systemImageButton = Button(self.my_frame2,text="Upload",bg="#E59A41",fg="white",borderwidth=2)
+        systemImageButton.place(x=220,y=340)
+
+        # Δημιουργώ κουμπί για το swipe right 
+        swipeRightButton = Button(self.my_frame2,text="Swipe Right",bg="#E59A41",fg="white",borderwidth=2,command=self.createDrop)
+        swipeRightButton.place(x=209,y=380)
 
     def systemImage(self):
         filename2 = filedialog.askopenfilename(initialdir="C:/",title="Select Image")

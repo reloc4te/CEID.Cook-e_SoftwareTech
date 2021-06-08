@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-#from tkinter.font import BOLD
 import pymysql
 import tkinter as tk
 from tkinter import ttk
@@ -316,44 +315,8 @@ class UserProfile():
          back = Button(self.tab2,text="Back...",command=self.showContents,cursor="hand2",font=("Calibri",15),fg="white",bg="orange",bd=0,width=10)
          back.place(x=130, y=330)
 
-         
-      
-     
-
-
-   #def search_recipe(self):
-      # selectedCW = self.dropCW.get()
-      # selectedmeal = self.dropmeal.get()
-      # selectedveg = self.dropveg.get()
-      # selectedmeat = self.dropmeat.get()
-      # selecteddairy = self.dropdairy.get()
-      # selectedfruit = self.dropfruit.get()
-      # selectedothers = self.dropothers.get()
-
-      # sqlrecipe = "Select recipe_name from recipes where cookware=%s and type_of_meal=%s and vegetables=%s and meat=%s and dairy=%s and fruit=%s and others=%s"
-      # cookWare= (selectedCW, )
-      # meal = (selectedmeal, )
-      # veg = (selectedveg, )
-      # meat = (selectedmeat, )
-      # dairy = (selecteddairy, )
-      # fruit = (selectedfruit, )
-      # others = (selectedothers, )
-
-      # self.resultrecipe = self.my_cursor.execute(sqlrecipe, (cookWare, meal,veg, meat, dairy, fruit, others))
-      # self.resultrecipe = self.my_cursor.fetchall()
-
-      # if not self.resultrecipe:
-      #    messagebox.showerror(title="Error",message="No such recipe")
-      # else:
-      #    num=80
-
-      #    for w in self.resultrecipe:
-      #       resultbut = Button(self.tab2, text=w, command=self.showresults)
-      #       resultbut.place(x=20,y=num)
-      #       num+=30
       
             
-      
    def showContents(self):
 
       Frame_recipe = Frame(self.tab2, bg="#FFEE8E")
@@ -395,9 +358,9 @@ class UserProfile():
       self.dropfruit.current(0)
       self.dropfruit.place(x=0, y=270)
 
-      self.dropothers = ttk.Combobox(self.tab2, values=["Others..","gluten-free","dairy-free"],width=58)
-      self.dropothers.current(0)
-      self.dropothers.place(x=0, y=295)
+      # self.dropothers = ttk.Combobox(self.tab2, values=["Others..","gluten-free","dairy-free"],width=58)
+      # self.dropothers.current(0)
+      # self.dropothers.place(x=0, y=295)
 
       searchRecipe = Button(self.tab2,text="Search..",command=self.showresults,cursor="hand2",font=("Calibri",15),fg="white",bg="orange",bd=0,width=10)
       searchRecipe.place(x=130, y=330)
@@ -405,86 +368,6 @@ class UserProfile():
 
    def close_windows(self):
       self.root.destroy()
-
-# class RecipeView:
-#    def __init__(self, root):
-#         self.root = root
-#         self.root.title("Your Profile")
-#         self.root.geometry("370x550")
-#         self.root.resizable(False,False)
-#         self.tabs()
-#         #self.show()
-   
-#    def tabs(self):
-#       self.image = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/Cook-e.png")
-#       # Show image using label
-#       image = Label( self.root, image = self.image)
-#       image.place(x = 10,y = 10, width=50, height=50)
-      
-#       self.root.title("Your Profile")
-#       tabControl = ttk.Notebook(self.root)
-       
-#       self.tab1 = Frame(tabControl,bg="white")
-#       self.tab2 = Frame(tabControl,bg="white")
-#       self.tab3 = Frame(tabControl,bg="white")
-#       self.tab4 = Frame(tabControl,bg="white")
-  
-#       tabControl.add(self.tab1, text ='Just for you')
-#       tabControl.add(self.tab2, text ='Find a recipe')
-#       tabControl.add(self.tab3, text ='Nutritionist')
-#       tabControl.add(self.tab4, text ='Mycart')
-#       tabControl.place(x=0,y=60,width=500,height=700)
-#       tabControl.select(self.tab2)
-#       #s.configure("TNotebook", tabposition='n')
-#       #tabControl.pack(expand = 1, fill ="both")
-
-#      #TAB JUST FOR YOU
-#       ttk.Label(self.tab1, text ="Week's Recipe!",background="orange",width=90).grid(column = 0, row = 0)
-      
-#       self.tab1.img2 = PhotoImage(file = "C:/Users/Marianna/Desktop/CEID/Τεχνολογία Λογισμικού/project_Code/CEID.Cook-e_SoftwareTech-1/simple_user_code/food.png")
-#       # Show image using label
-#       img2 = Label( self.tab1, image = self.tab1.img2)
-#       img2.place(x =0,y =20, width=400, height=80)
-
-#       con=pymysql.connect(host="localhost",user="root",password="texnologia!@logismikou1998",database="pythonlogin")
-#       my_cursor=con.cursor()
-#       sql = "Select recipe_name from recipes order by rand() limit 1"
-#       result = my_cursor.execute(sql)
-#       result=my_cursor.fetchall()
-#       sql2 = "Select chef_name from recipes where recipe_name=%s "
-#       recipe_name=(result, )
-#       result2 = my_cursor.execute(sql2, recipe_name)
-#       result2=my_cursor.fetchall()
-#       sql3 = "Select your_instructions from recipes where recipe_name=%s "
-#       result3 = my_cursor.execute(sql3,recipe_name)
-#       result3=my_cursor.fetchall()
-
-
-#       #Μορφοποίηση αποτελεσμάτων
-
-#        #Ονομα συνατγής retrieved from database
-#       recipeName = Label(self.tab1, text="Your week's recipe is:",font=("Calibri",20,'bold'), fg="orange", bg="white")
-#       recipeName.place(x=0, y=100)
-#       searched_result = Label(self.tab1, text=result,background="white",font=('Calibri',15),fg="brown")
-#       searched_result.place(x=255, y=105)
-
-#        #Όνομα chef της retrieved συνταγής 
-#       chefName = Label(self.tab1, text="Inspired by:",font=("Calibri",15,'bold'), fg="orange", bg="white")
-#       chefName.place(x=0, y=130)
-#       searched_result2 = Label(self.tab1, text=result2,background="white",font=('Calibri',12),fg="brown")
-#       searched_result2.place(x=110, y=133)
-
-#        #Οδηγίες εκτέλεσης της retrieved συνταγής 
-#       instructions = Label(self.tab1, text="Instructions for you",font=("Calibri",20,'bold','underline'), fg="orange", bg="white")
-#       instructions.place(x=60, y=155)
-#       searched_result3 = Label(self.tab1, text=result3,background="white",font=('Calibri',12),fg="brown")
-#       searched_result3.place(x=0, y=200)
-
-#      #TAB FIND A RECIPE(results from searchh now)
-#    def show(self):
-#       pass
-   
-
 
 def main(): 
  root = tk.Tk()
@@ -494,8 +377,3 @@ def main():
 if __name__ == '__main__':
    main()
    
-
-     
-#root = Tk()
-#ob = Login(root)
-#root.mainloop()

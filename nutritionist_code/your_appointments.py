@@ -38,23 +38,35 @@ class Nutricionist:
         my_notebook.place(x=0,y=60,width=500,height=500)
         
     def calendar(self):
+        frame1 = Frame(self.my_frame1,bg="white")
+        frame1.place(x=0,y=0,height=500,width=500)
         # Δημιουργώ ένα Label για το καλωσόρισμα του διατροφολόγου
-        welcome = Label(self.my_frame1,text="Welcome, Dr.", font=("Calibri",15),bg="white",fg="#E59A41")
-        welcome.place(x=130,y=5)
+        welcome = Label(self.my_frame1,text="Welcome, Dr.Phill", font=("Calibri",15),bg="white",fg="#E59A41")
+        welcome.place(x=160,y=5)
 
         # Δημιουργώ το calendar 
-        self.cal = Calendar(self.my_frame1,selectmode="day")
+        self.cal = Calendar(self.my_frame1,selectmode="day",locale="en_US",cursor="hand2",date_pattern="dd/MM/yyyy")
         self.cal.place(x=115,y=80)
 
         # Δημιουργώ κουμπί για να παίρνω την ημερομηνία
         getCalendarDate = Button(self.my_frame1, text="Get Date", command=self.grabDate)
         getCalendarDate.place(x=130,y=310)
-
-        self.my_Label = Label(self.my_frame1, text="")
-        self.my_Label.place(x=120,y=340)
     
     def grabDate(self):
-        self.my_Label.config(text=self.cal.get_date())
+        frame2 = Frame(self.my_frame1,bg="white")
+        frame2.place(x=0,y=0,height=500,width=500)
+
+        my_label = Label(self.my_frame1, text="")
+        my_label.place(x=75,y=35)
+
+        my_label.config(text=self.cal.get_date(),fg="black",height=2,width=40,font=("Calibri",12))
+        # Δημιουργώ ένα Label για το καλωσόρισμα του διατροφολόγου
+        welcome = Label(self.my_frame1,text="Welcome, Dr.Phill", font=("Calibri",15),bg="white",fg="#E59A41")
+        welcome.place(x=160,y=5)
+
+        goBack = Button(self.my_frame1, text="Go back", command=self.calendar)
+        goBack.place(x=130,y=310)
+
 
         
 

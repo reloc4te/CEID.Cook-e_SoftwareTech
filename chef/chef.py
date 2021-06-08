@@ -2,20 +2,10 @@ from tkinter import * #Το χρησιμοποιούμε για να εισάγ�
 from tkinter import ttk
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import messagebox
 import pymysql
 
-
-
-class CreateRecipe:
-    def __init__(self,root):
-        self.root = root
-        self.root.title("Chef's Interface") #Ο τίτλος του παραθύρου
-        self.root.geometry("500x500") #H διάσταστη του παραθύρου
-        #Make the app resizeable
-        self.root.resizable(False, False) #Width #Height
-
     
-
 class Chef:
     def __init__(self,root):
         self.root = root
@@ -111,16 +101,163 @@ class Chef:
         name=(searched, )
         result = my_cursor.execute(sql,name)
         result= my_cursor.fetchall()
-    
-        num=35
-        num2=80
-        for w in result:
+        if not result:
+            messagebox.showerror("Error","This chef doesn't exist, please select another one")
+        else:
+            num=35
+            num2=80
+            for w in result:
+                
+                resultLabel = Button(self.my_frame2, text=w,font=("Calibri",12), width=52,bg="white")
+                resultLabel.place(x=num,y=num2)
+                num2+=30
             
-            resultLabel = Button(self.my_frame2, text=w,font=("Calibri",12), width=52,bg="white")
-            resultLabel.place(x=num,y=num2)
-            num2+=30
+
+class CreateRecipe:
+    def __init__(self,root):
+        self.root = root
+        self.root.title("Chef's Interface") #Ο τίτλος του παραθύρου
+        self.root.geometry("500x500") #H διάσταστη του παραθύρου
+        #Make the app resizeable
+        self.root.resizable(False, False) #Width #Height
+        self.createFrames()
+        self.createDrop()
+    
+    def createFrames(self):
+        self.root.img = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech-1/chef/Cook-e.png")
+        #Show image using label
+        img = Label(self.root, image = self.root.img)
+        img.place(x = 0,y = 10, width=50, height=50)
+        my_notebook = ttk.Notebook(self.root)
+        my_notebook.pack(pady=100)
+
+        self.my_frame1 = Frame(my_notebook, bg="white")
+        self.my_frame2 = Frame(my_notebook, bg="#FFEE8E")
+        self.my_frame3 = Frame(my_notebook, bg="white")
         
+        my_notebook.add(self.my_frame1, text="Home")
+        my_notebook.add(self.my_frame2, text="My Recipes")
+        my_notebook.add(self.my_frame3, text="Settings")
+        my_notebook.place(x=0,y=60,width=500,height=500)
+
+        my_notebook.select(self.my_frame2) # Χρησιμοποιώ αυτή τη γραμμή κώδικα ώστε το νέο παράθυρο να ανοίξει στο frame2 δηλαδή το frame του My Recipes
+    
+    def createDrop(self):
+        # Δημιουργώ το Entry για να πληκτρολογεί ο chef το όνομα της συνταγής
+        inputName = Entry(self.my_frame2,font=("Calibri",12),bg="#E59A41",width=62,borderwidth=5,fg="white")
+        inputName.insert(0,"Choose a name for your recipe:")
+        inputName.place(x=0,y=0)
+
+        # Δημιουργώ το Label για το cookware
+        inputCookware = Label(self.my_frame2,text="Choose cookware", font=("Calibri",12),bg="#E59A41",fg="white",width=62,borderwidth=3)
+        inputCookware.place(x=0,y=40)
+
+        # Δημιουργώ το Drop-down για το cookware
+        dropCW = ttk.Combobox(self.my_frame2,values=["Search...","pot","pan","stock-pot","grill-pan","casserole","baking-sheet"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropCW.current(0)
+        dropCW.place(x=0,y=70)
+
+        # Δημιουργώ το Label για το type of meal
+        inputMeal = Label(self.my_frame2,text="Choose type of meal", font=("Calibri",12),bg="#E59A41",fg="white",width=62,borderwidth=3)
+        inputMeal.place(x=0,y=100)
+
+        # Δημιουργώ το Drop-down για το type of meal
+        dropMeal = ttk.Combobox(self.my_frame2,values=["Search...","breakfast","branch","lunch","snack","dinner"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropMeal.current(0)
+        dropMeal.place(x=0,y=130)
+
+        # Δημιουργώ το Label για το ingridients
+        inputMeal = Label(self.my_frame2,text="Choose ingridients", font=("Calibri",12),bg="#E59A41",fg="white",width=62,borderwidth=3)
+        inputMeal.place(x=0,y=160)
+
+        # Δημιουργώ το Drop-down για το vegetables
+        dropMeal = ttk.Combobox(self.my_frame2,values=["Vegetables..","cabbage","tomato","cucumber","potato","carrot"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropMeal.current(0)
+        dropMeal.place(x=0,y=190)
+
+        # Δημιουργώ το Drop-down για το Meat-chicken-seafood
+        dropMeal = ttk.Combobox(self.my_frame2,values=["Meat-Chicken-Seafood..","chicken","lamb","beef","pork","shrimps","tuna"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropMeal.current(0)
+        dropMeal.place(x=0,y=220)
         
+        # Δημιουργώ το Drop-down για το Dairy
+        dropMeal = ttk.Combobox(self.my_frame2,values=["Dairy..","milk","cheese","yoghurt","butter","soft-cheese"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropMeal.current(0)
+        dropMeal.place(x=0,y=250)
+
+        # Δημιουργώ το Drop-down για το Fruits
+        dropMeal = ttk.Combobox(self.my_frame2,values=["Fruit..","apple","banana","strawberry","avocado","peach"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropMeal.current(0)
+        dropMeal.place(x=0,y=280)
+
+        # Δημιουργώ το Drop-down για το Others
+        dropMeal = ttk.Combobox(self.my_frame2,values=["Others..","gluten-free","dairy-free"],width=59,font=("Calibri",12),foreground="black",background="white")
+        dropMeal.current(0)
+        dropMeal.place(x=0,y=310)
+
+        # Δημιουργώ κουμπί που θα λειτουργεί σαν swipe left
+
+        swipeLeft = Button(self.my_frame2,text="Swipe Left",bg="#E59A41",fg="white",borderwidth=2,command=self.swipe)
+        swipeLeft.place(x=210,y=360)
+
+    def swipe(self):
+        self.new = Toplevel()
+        self.new.title("Add New Recipe")
+        self.new.geometry("500x500")
+        self.new.img = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech-1/chef/Cook-e.png")
+        #Show image using label
+        img = Label(self.new, image = self.new.img)
+        img.place(x = 0,y = 10, width=50, height=50)
+        my_notebook = ttk.Notebook(self.new)
+        my_notebook.pack(pady=100)
+
+        self.my_frame1 = Frame(my_notebook, bg="white")
+        self.my_frame2 = Frame(my_notebook, bg="#FFEE8E")
+        self.my_frame3 = Frame(my_notebook, bg="white")
+        
+        my_notebook.add(self.my_frame1, text="Home")
+        my_notebook.add(self.my_frame2, text="My Recipes")
+        my_notebook.add(self.my_frame3, text="Settings")
+        my_notebook.place(x=0,y=60,width=500,height=500)
+
+        my_notebook.select(self.my_frame2) # Χρησιμοποιώ αυτή τη γραμμή κώδικα ώστε το νέο παράθυρο να ανοίξει στο frame2 δηλαδή το frame του My Recipes
+    
+        # Δημιουργώ το Label για το image
+        inputImage = Label(self.my_frame2,text="Select an image for your recipe", font=("Calibri",12),bg="#E59A41",fg="white",width=62,borderwidth=3)
+        inputImage.place(x=0,y=0)
+
+        # Δημιουργώ κουμπί για το upload image from system
+        systemImageButton = Button(self.my_frame2,text="Upload image from system",bg="white",width=40,fg="black",borderwidth=2,command=self.systemImage)
+        systemImageButton.place(x=0,y=30)
+
+        # Δημιουργώ κουμπί για το upload image from cooke's ideas
+        systemImageButton = Button(self.my_frame2,text="Upload image from from cooke's ideas",bg="white",width=40,fg="black",borderwidth=2)
+        systemImageButton.place(x=0,y=60)
+
+        # Δημιουργώ το πεδίο που θα εμφανίζεται η εικόνα
+        self.my_frame2.img4 = PhotoImage(file = "C:/Users/Windows/Documents/ΜΑΘΗΜΑΤΑ CEID/Τεχνολογία Λογισμικού/Project_code/CEID.Cook-e_SoftwareTech-1/chef/Cook-e.png")
+        img4 = Label(self.my_frame2, image = self.my_frame2.img4,bg="grey")
+        img4.place(x = 320,y = 30,width=150,height=150)
+
+        # Δημιουργώ το Label για το Instructions
+        inputInst = Label(self.my_frame2,text="Your Instructions", font=("Calibri",12),bg="#E59A41",fg="white",width=62,borderwidth=3)
+        inputInst.place(x=0,y=200)
+
+        # Δημιουργώ Entry για τα σχόλια
+        comments = Entry(self.my_frame2,font=("Calibri",12),bg="white",fg="black",width=61,borderwidth=3)
+        comments.insert(0,"Write your comments is this section")
+        comments.place(x=0,y=230,height=120)
+
+        # Δημιουργώ κουμπί για το upload 
+        systemImageButton = Button(self.my_frame2,text="Upload",bg="white",background="#E59A41",fg="white",borderwidth=2)
+        systemImageButton.place(x=220,y=370)
+
+    def systemImage(self):
+        filename2 = filedialog.askopenfilename(initialdir="C:/",title="Select Image")
+
+    
+
+
 
 
 def main(): 

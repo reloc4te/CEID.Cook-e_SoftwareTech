@@ -14,8 +14,10 @@ root.resizable(False, False) #Width #Height
 def openPersonalInformation():
  
     PersonalInformation = Toplevel(root)   # Toplevel object which will be treated as a new window
+    frame = tk.Frame()
     PersonalInformation.title("Personal Information")   # sets the title of the Toplevel widget
     PersonalInformation.geometry("500x500")
+    frame.pack()
 
     Label(PersonalInformation, text ="Personal Information", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
     label.pack(pady = 10)
@@ -91,38 +93,40 @@ def openPersonal():
     Personal.geometry("500x500")
 
     Label(Personal, text ="Personal Settings", font=("Comics Sans MS",20)).pack()  # A Label widget to show in toplevel
-    label=Label.pack(pady = 10)
+    # label.pack(pady = 10)
     # Change the label text
-def show(self):
-    #label.config( text = clicked.get() )
-    Label(show, text = clicked.get()).pack()
-    
-    # Dropdown menu options
-options = [
-    "0-10",
-    "10-15",
-    "16-18",
-    "19-22",
-    "23-27",
-    "28-40",
-    "41-50",
-    "51+"
- ]
-    # datatype of menu text
-clicked = StringVar()
-    # initial menu text
-clicked.set( "age" )
-    # Create Dropdown menu
-drop = OptionMenu( root , clicked , *options )
-drop.grid(row = 0, column = 0, columnspan=2)
-    
-    # Create button, it will change label text
-button = Button( root , text = "Select" , command = show )
-button.grid(row = 0, column = 2)
-    
-    # Create Label
-label = Label( root , text = " " )
-label.grid(row = 0, column = 3, columnspan=2)
+    def show(self):
+        #label.config( text = clicked.get() )
+        Label(Personal, text = clicked.get()).pack()
+        
+        
+        # Dropdown menu options
+    options = [
+        "0-10",
+        "10-15",
+        "16-18",
+        "19-22",
+        "23-27",
+        "28-40",
+        "41-50",
+        "51+"
+    ]
+        # datatype of menu text
+    clicked = StringVar()
+        # initial drop down menu text
+    clicked.set( "age" )
+        # Create Dropdown menu
+    drop = OptionMenu( Personal , clicked , *options )
+    drop.pack()      
+        # Create button, it will change label text
+    button = Button( Personal , text = "Select" , command = show )
+    # button.grid(row = 0, column = 2)
+    button.pack()
+        
+        # Create Label
+    Label( show , text = " " ).pack()
+    # # label.grid(row = 0, column = 3, columnspan=2)
+    # label.pack(pady = 10)
 
 
 

@@ -10,6 +10,14 @@ root.title("Settings") #Ο τίτλος του παραθύρου
 root.geometry("500x500") #H διάσταστη του παραθύρου
 root.resizable(False, False) #Width #Height
 
+def __init__(self, root):
+
+        self.root = root
+        self.root.title("Login/Sign up System")
+        self.root.geometry("800x700")
+        self.root.resizable(False,False)
+        self.loginform()
+
 
 def openPersonalInformation():
  

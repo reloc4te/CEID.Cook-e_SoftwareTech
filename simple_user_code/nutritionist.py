@@ -1,36 +1,29 @@
 from calendar import month
-from tkinter import *
-from tkinter import messagebox
-from tkinter.font import BOLD
-from tkcalendar import *
-
-import tkinter as tk
+from re import L
+from tkinter import *   #Το χρησιμοποιούμε για να εισάγουμε την βιβλιοθήκη για το GUI
 from tkinter import ttk
+import tkinter as tk
+from tkcalendar import * 
+from tkinter import messagebox
+import pymysql
 
 
 
+class Nutritionist:
 
-class Nutritionist():
 
+    def __init__(self,root):
 
-    def __init__(self):
-
-        #root = Tk()
 
         self.root = root
-        self.root.geometry("370x550")
+        self.root.geometry("500x500")
         self.root.resizable(False,False)
-        
-
         self.tabs()
-    
+        self.calendar()
 
-    def run(self):
-        self.root.mainloop()
+
 
    
-    
-
 
 
     def tabs(self):
@@ -39,8 +32,9 @@ class Nutritionist():
         image = Label( self.root, image = self.image)
         image.place(x = 10,y = 10, width=50, height=50)
         
-        self.root.title("Your Profile")
+        self.root.title("Nutritionist")
         tabControl = ttk.Notebook(self.root)
+        tabControl.pack()
         
         self.tab1 = Frame(tabControl,bg="white")
         self.tab2 = Frame(tabControl,bg="white")
@@ -52,154 +46,87 @@ class Nutritionist():
         tabControl.add(self.tab3, text ='Nutritionist')
         tabControl.add(self.tab4, text ='Mycart')
         tabControl.place(x=0,y=60,width=500,height=700)
-	tabControl.select(self.tab3)
-	
-     
+        tabControl.select(self.tab3)
+
+    def calendar(self):
+
+        global inputName
+        inputName = Entry(self.tab3,font=("Calibri",12),bg="white",borderwidth=5,fg="black")
+        inputName.insert(0,"Insert your name...")
+        inputName.place(x=160,y=330)
+
+        con=pymysql.connect(host="localhost",user="root",password="texnologia!@logismikou1998",database="pythonlogin")
+        my_cursor=con.cursor()
+        sql = "Select dr_name, stars from recipesnot"
+        global result
+        result = my_cursor.execute(sql)
+        result= my_cursor.fetchall()
+
+        num=85
+        global i
+        button = {}
+        for i in result:
+            def action(x=i):
+                return self.show_nutri(x)
+
+            button[i] = Button(self.root, text=i, command=action, width=59, font=("Calibri",10), bg='orange', fg="black")
+            button[i].place(x=35,y=num)
+            num+=30
 
 
 
+        self.cal=Calendar(self.tab3, selectmode="day",year=2021,locale="en_US",date_pattern="yyyy-MM-dd")
+        self.cal.place(x=120,y=100)
 
+        drophour = ttk.Combobox(self.tab3, values=['Select hour...','9:00','9:30','10:00','10:30','11:00','11:30'],width=20, font=("Calibri",12))
+        drophour.current(0)
+        drophour.place(x=150,y=300)
 
-        style = ttk.Style()
-#Pick a theme
-        style.theme_use("default")
-# Configure our treeview colors
+        my_button = Button(self.tab3,text="Submit", bg="orange", command=self.grab_date)
+        my_button.place(x=220,y=370)
 
-        style.configure("Treeview", 
-	        background="#D3D3D3",
-	        foreground="black",
-	        rowheight=25,
-	        fieldbackground="#D3D3D3"
-	        )
-# Change selected color
-        style.map('Treeview', 
-	        background=[('selected', 'blue')])
-
-# Create Treeview Frame
-        tree_frame = Frame(root)
-        tree_frame.place(x=90,y=120,width=200,height=100)
-
-# Treeview Scrollbar
-        tree_scroll = Scrollbar(tree_frame)
-        tree_scroll.pack(side=RIGHT, fill=Y)
-
-# Create Treeview
-        my_tree = ttk.Treeview(tree_frame, yscrollcommand=tree_scroll.set, selectmode="extended")
-# Pack to the screen
-        my_tree.pack()
-
-#Configure the scrollbar
-        tree_scroll.config(command=my_tree.yview)
-
-# Define Our Columns
-        my_tree['columns'] = ("Name","Stars")
-
-# Formate Our Columns
-        my_tree.column("#0", width=0, stretch=NO)
-        my_tree.column("Name", anchor=W, width=140)
-        my_tree.column("Stars", anchor=CENTER, width=100)
-
-
-# Create Headings 
-        my_tree.heading("#0", text="", anchor=W)
-        my_tree.heading("Name", text="Nutritionist", anchor=W)
-        my_tree.heading("Stars", text="Stars", anchor=CENTER)
-
-
-# Add Data
-        data = [
-	["John", 1, ],
-	["Mary", 2],
-	["Tim", 3 ],
-	["Erin", 4],
-	["Bob", 5],
-	["Steve", 6],
-	["Tina", 7],
-	["Mark", 8],
-	["John", 1],
-	["Mary", 2],
-	["Tim", 3],
-	["Erin", 4],
-
-]
-
-# Create striped row tags
-        my_tree.tag_configure('oddrow', background="white")
-        my_tree.tag_configure('evenrow', background="gold")
-
-        global count
-        count=0
-
-        for record in data:
-                if count % 2 == 0:
-                        my_tree.insert(parent='', index='end', iid=count, text="", values=(record[0], record[1]), tags=('evenrow',))
-                else:
-                        my_tree.insert(parent='', index='end', iid=count, text="", values=(record[0], record[1]), tags=('oddrow',))
-
-                count += 1
-
-
-
-
-
-
-       
-
-
-
-
-        # Move Row up
-        def up():
-                rows = my_tree.selection()
-                for row in rows:
-                        my_tree.move(row, my_tree.parent(row), my_tree.index(row)-1)
-
-        # Move Row Down
-        def down():
-                rows = my_tree.selection()
-                for row in reversed(rows):
-                        my_tree.move(row, my_tree.parent(row), my_tree.index(row)+1)
-
-
-
-
-        
-
-        
-
-
-        
-
-
-        #Calendar
-        cal=Calendar(root, selectmode="day",year=2021,month=6,day=8)
-        cal.place(x=30,y=250,width=300,height=200)
-
-
-        
-
-
-
-        def grab_date():
-            my_label.config(text=cal.get_date())
-        
-
-
-        my_button = Button(root,text="Submit", command=grab_date)
-        my_button.place(x=155,y=500,width=50,height=20)
-
-        my_label = Label(root,text="")
-        my_label.pack(pady=20)
-
-        
-
+        # self.my_label = Label(self.tab3,text="")
+        # self.my_label.pack(pady=20)
     
 
+    def show_nutri(self,info):
+        global nutributton
+        nutributton = Label(self.tab3, text=info[0])
+        #nutributton.place(x=75,y=35)
+        # global nutri
+        # nutri = nutributton.cget("text")
 
+
+    def grab_date(self):
+
+        name = nutributton.cget("text")
+        dateap = self.cal.get_date()
+        selectedhour = self.drophour.get()
+        namep = inputName.get()
+
+        con2=pymysql.connect(host="localhost",user="root",password="texnologia!@logismikou1998",database="pythonlogin")
+        my_cursor2=con2.cursor()
+
+        sql2 = "Insert into pendingappointments(userPatiencename, Date, hour, nutritionist) values (%s, %s, %s, %s) "
+
+        namenutri = (name, )
+        datea=(dateap, )
+        hourselected=(selectedhour, )
+        pname=(namep, )
+        
+        my_cursor2.execute(sql2,(pname,datea,hourselected,namenutri))
+        con2.my_cursor2.commit()
+        messagebox.showinfo(title="Insert", message="Inserted succesfully!")
+        
+        
+
+
+    
+def main(): 
+ root = tk.Tk()
+ app = Nutritionist(root)
+
+ root.mainloop()
 
 if __name__ == '__main__':
-    root = tk.Tk()
-    nu=Nutritionist()
-   
-    nu.run()
-   
+   main()

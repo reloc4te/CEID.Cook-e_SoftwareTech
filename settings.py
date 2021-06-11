@@ -5,6 +5,7 @@ from tkinter import filedialog
 import tkinter as tk
 from tkinter import ttk
 #import pymysql
+# import sqlite3
 import re
 
 
@@ -78,7 +79,20 @@ def openUsername():
     myButton.pack()
 
         # εδω πρεπει να συνδεσω βαση ωστε οταν κανει submit να πηγαινει στη βαση και να κοιταει / αποθηκευει
+    # conn = sqlite3.connect('all_usernames.db')
 
+    # #create cursor
+    # c = conn.cursor()
+
+    # #table
+    # c.execute("""CREATE TABLE usernames (
+    #         username text,
+    # )""")
+
+    # #commit changes in db
+    # conn.commit()
+    # #close connection
+    # conn.close()
 
     if e == None:
 
@@ -295,14 +309,13 @@ def openMedical():
     options = [
             "leukaemia",
             "cholecystitis",
-            "addison's disease",
+            "addison disease",
             "anaphylaxis",
             "asbestosis",
             "lactose",
             "kidney stones",
             "lyme disease"
             "osteoporosis"
-            "scoliosis"
         ]
             # datatype of menu text
     showMedicalCon.clicked = StringVar()

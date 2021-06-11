@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk
 #import pymysql
 import re
-from PIL import ImageTk, Image
+# from PIL import ImageTk, Image
 
 
 
@@ -14,37 +14,7 @@ root = Tk() #To κύριο παράθυρό μας
 root.title("Premium") #Ο τίτλος του παραθύρου
 root.geometry("500x500") #H διάσταστη του παραθύρου
 root.resizable(False, False) #Width #Height
-root.tabs()
-root.showContents()
-root.myCart()
 
-
-def tabs(self):
-    self.root.title("Your Profile")
-    tabControl = ttk.Notebook(self.root)
-       
-    self.tab1 = Frame(tabControl,bg="white")
-    self.tab2 = Frame(tabControl,bg="white")
-    self.tab3 = Frame(tabControl,bg="white")
-    self.tab4 = Frame(tabControl,bg="white")
-    self.tab5 = Frame(tabControl,bg="white")
-  
-    tabControl.add(self.tab1, text ='Just for you')
-    tabControl.add(self.tab2, text ='Find a recipe')
-    tabControl.add(self.tab3, text ='Nutritionist')
-    tabControl.add(self.tab4, text ='Mycart')
-    tabControl.add(self.tab5, text ='Premium')
-    tabControl.place(x=0,y=60,width=500,height=700)
-    #s.configure("TNotebook", tabposition='n')
-    #tabControl.pack(expand = 1, fill ="both")
-
-def showPremiumScreen(self):
-    Frame_recipe2 = Frame(self.tab2, bg="white")
-    Frame_recipe2.place(x=0, y=0, width=370, height=550)
-    
-    img = ImageTk.PhotoImage(Image.open("D:\Users\makis\Documents\CEID\ΤΛ\Project Code\CEID.Cook-e_SoftwareTech\Premium.png"))
-    panel = Label(root, image = img)
-    panel.pack(side = "bottom", fill = "both", expand = "yes")
 
 def showPaymentPlanScreen():
 
@@ -72,20 +42,20 @@ def showCreditCardScreen():
     Label(CreditCardScreen, text ="Username Settings", font=("Comics Sans MS",20)).pack(pady = 10)  # A Label widget to show in toplevel
 
 
+Label(root, text ="Why go Premium?", font=("Comics Sans MS",20)).pack(pady = 10)  # A Label widget to show in toplevel
+    
+# root.image = PhotoImage(file = "D:\Users\makis\Documents\CEID\ΤΛ\Project Code\CEID.Cook-e_SoftwareTech\Premium.png")
+# # Show image using label
+# image = Label( root.root, image = root.image)
+# image.place(x = 10,y = 10, width=50, height=50)
+
+def close_win():
+    root.destroy()   # close the current window
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+Button(root, text="Payment Plan", font=('Calibri (Body)',10),command=showPaymentPlanScreen).pack(pady=20)
+#Close the window
+Button(root, text="Back", font=('Helvetica bold',10),command=close_win).pack(pady=20)
 
 
 root.mainloop()

@@ -47,16 +47,7 @@ class ChatApplication:
         
         
         
-      
-       # self.window.geometry("800x700")
-        
-        #image = Image.open("photo.jpg")
-        #c=Canvas(self.window,bg=WHITE,height=200,width=200)
-        #self.window.photo=PhotoImage(file="C:/Users/kleas/OneDrive/Έγγραφα/Ceid/8o ΕΞΑΜΗΝΟ/ΤΛ/pytorch-chatbot-master/photo.png")
-       # label_image=Label(self.window,image=self.window.photo)
-       # label_image.place(x=0,y=0,relheight=50, relwidth=50)
-        #c.pack()
-      
+    
 
         #text widget
         self.text_widget=Text(self.window, width=20, height=2, bg=WHITE, fg=BLACK, font=FONT, padx=5, pady=5)

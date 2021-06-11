@@ -25,6 +25,7 @@ class Nutritionist:
 
    
 
+
     def tabs(self):
         self.image = PhotoImage(file = "C:/Users/kleas/OneDrive/Έγγραφα/Ceid/8o ΕΞΑΜΗΝΟ/ΤΛ/pytorch-chatbot-master/nutri/Cook-e.png")
         # Show image using label

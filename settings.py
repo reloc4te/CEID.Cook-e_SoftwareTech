@@ -4,8 +4,7 @@ from tkinter import messagebox
 from tkinter import filedialog
 import tkinter as tk
 from tkinter import ttk
-#import pymysql
-# import sqlite3
+#import sqlite3
 import re
 
 
@@ -15,25 +14,6 @@ root.title("Settings") #Ο τίτλος του παραθύρου
 root.geometry("500x500") #H διάσταστη του παραθύρου
 root.resizable(False, False) #Width #Height
 
-
-# def settingform():
-#     label = Label(root, text ="Settings", font=("Comics Sans MS",20))
-#     label.pack()
-
-#     myButton1 = Button(root, text="Personal Information", padx=50, pady=10, borderwidth = 0, command = openPersonalInformation)
-#     myButton2 = Button(root, text="Notifications", padx=50, pady=10, borderwidth = 0)
-#     myButton3 = Button(root, text="Security", padx=50, pady=10, borderwidth = 0)
-#     myButton4 = Button(root, text="General Settings", padx=50, pady=10, borderwidth = 0)
-#     myButton5 = Button(root, text="Payment Information", padx=50, pady=10, borderwidth = 0)
-#     myButton6 = Button(root, text="App Information", padx=50, pady=10, borderwidth = 0)
-
-
-#     myButton1.pack(anchor="w")
-#     myButton2.pack(anchor="w")
-#     myButton3.pack(anchor="w")
-#     myButton4.pack(anchor="w")
-#     myButton5.pack(anchor="w")
-#     myButton6.pack(anchor="w")
 
 
 def openPersonalInformation():
@@ -94,24 +74,6 @@ def openUsername():
     # #close connection
     # conn.close()
 
-    if e == None:
-
-                messagebox.showerror("Error","Username already Exists",parent=Username.root)
-                Username.regclear()
-                Username.entry.focus()
-
-            #     else:
-
-            #        cur.execute("insert into accounts values(%s,%s,%s,%s)",(Username.entry.get(),Username.entry3.get(),Username.entry2.get(),Username.entry4.get()))
-            #        con.commit()
-            #        con.close()
-
-            #        messagebox.showinfo("Success","Register Succesfull",parent=Username.root)
-            #        Username.regclear()
-
-            #  except Exception as es:
-            #     messagebox.showerror("Error",f"Error due to:{str(es)}",parent=Username.root)
-    #e.delete(0, END)
 
 def opencPassword():
 
@@ -142,28 +104,28 @@ def opencPassword():
     #Close the window
     Button(cPassword, text="Quit", font=('Helvetica bold',10),command=new_window).pack(pady=20)
 
-    try:
-        con=pymysql.connect(host='localhost',user='root',password='texnologia!@logismikou1998',database='pythonlogin')
+    # try:
+    #     con=pymysql.connect(host='localhost',user='root',password='texnologia!@logismikou1998',database='pythonlogin')
 
-        cur=con.cursor()
+    #     cur=con.cursor()
 
-        cur.execute('select * from accounts where email=%s and password=%s',(cpassword.email_txt.get(),cpassword.get()))
+    #     cur.execute('select * from accounts where email=%s and password=%s',(cpassword.email_txt.get(),cpassword.get()))
 
-        row=cur.fetchone() #cpassword ??
+    #     row=cur.fetchone() #cpassword ??
 
-        if row == "12345": #cpassword.get() ??? τι οχι?
-                messagebox.showinfo("Success","Password Correct",parent=cPassword.root)
-                cPassword.regclear()
-                opennPassword() #open window to enter the new password
+    #     if row == "12345": #cpassword.get() ??? τι οχι?
+    #             messagebox.showinfo("Success","Password Correct",parent=cPassword.root)
+    #             cPassword.regclear()
+    #             opennPassword() #open window to enter the new password
 
-        else:
+    #     else:
 
-                messagebox.showerror("Wrong Password.","Please enter again your Password.",parent=cPassword.root)
-                cPassword.regclear()
-                cPassword.entry.focus()
+    #             messagebox.showerror("Wrong Password.","Please enter again your Password.",parent=cPassword.root)
+    #             cPassword.regclear()
+    #             cPassword.entry.focus()
 
-    except Exception as es:
-        messagebox.showerror("Error",f"Error due to:{str(es)}",parent=cPassword.root)
+    # except Exception as es:
+    #     messagebox.showerror("Error",f"Error due to:{str(es)}",parent=cPassword.root)
 
 def opennPassword():
     nPassword = Toplevel(root)   # Toplevel object which will be treated as a new window

@@ -49,6 +49,12 @@ Label(root, text ="Why go Premium?", font=("Comics Sans MS",20)).pack(pady = 10)
 # image = Label( root.root, image = root.image)
 # image.place(x = 10,y = 10, width=50, height=50)
 
+# Add image file
+root.bg = PhotoImage(file = "D:\Users\makis\Documents\CEID\ΤΛ\Project Code\CEID.Cook-e_SoftwareTech\Premium.png")
+# Show image using label
+bg = Label( root.root, image = root.bg)
+bg.place(x = 0,y = 0, width=800, height=500)
+
 def close_win():
     root.destroy()   # close the current window
 
